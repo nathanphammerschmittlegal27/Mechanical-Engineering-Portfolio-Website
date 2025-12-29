@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 export function Navbar() {
@@ -13,21 +13,24 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   const navLinks = [{
+    name: 'Projects',
+    href: '/'
+  }, {
     name: 'About',
     href: '/about'
   }, {
     name: 'Contact',
     href: '/contact'
   }];
-  return <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-white/80 backdrop-blur-md border-b border-gray-200/50' : 'bg-transparent'}`}>
+  return <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-50/50 backdrop-blur-sm border-b border-gray-200/30">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link to="/" className="text-xl font-semibold tracking-tight text-gray-900">
-          Portfolio
+          Nathan Hammerschmitt Le Gal
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map(link => <Link key={link.name} to={link.href} className={`text-sm font-medium transition-colors ${location.pathname === link.href ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}>
+          {navLinks.map(link => <Link key={link.name} to={link.href} className={`text-sm font-medium transition-colors ${location.pathname === link.href ? 'text-gray-950 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}>
               {link.name}
             </Link>)}
         </div>
@@ -39,8 +42,8 @@ export function Navbar() {
       </div>
 
       {/* Mobile Nav */}
-      {isMobileMenuOpen && <div className="md:hidden absolute top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-lg px-6 py-4 flex flex-col space-y-4 animate-in slide-in-from-top-2">
-          {navLinks.map(link => <Link key={link.name} to={link.href} className={`text-base font-medium py-2 ${location.pathname === link.href ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'}`} onClick={() => setIsMobileMenuOpen(false)}>
+      {isMobileMenuOpen && <div className="md:hidden absolute top-16 left-0 right-0 bg-gray-50/60 backdrop-blur-sm border-b border-gray-200/30 shadow-lg px-6 py-4 flex flex-col space-y-4 animate-in slide-in-from-top-2">
+          {navLinks.map(link => <Link key={link.name} to={link.href} className={`text-base font-medium py-2 ${location.pathname === link.href ? 'text-gray-950 font-semibold' : 'text-gray-600 hover:text-gray-900'}`} onClick={() => setIsMobileMenuOpen(false)}>
               {link.name}
             </Link>)}
         </div>}

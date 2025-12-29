@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
@@ -18,26 +17,18 @@ export function ProjectDetail() {
           <h1 className="text-4xl font-semibold text-gray-900 mb-4">
             Project Not Found
           </h1>
-          <Link to="/" className="text-blue-600 hover:text-blue-700 font-medium">
+          <Link to="/" className="text-[#007AFF] hover:text-[#0051D5] font-medium">
             ← Back to Projects
           </Link>
         </div>
       </div>;
   }
-  return <div className="min-h-screen bg-white font-sans antialiased selection:bg-blue-100 selection:text-blue-900">
+  return <div className="min-h-screen bg-white font-sans antialiased selection:bg-[#007AFF]/20 selection:text-[#007AFF]">
       <Navbar />
 
       <main>
-        {/* Back Button */}
-        <div className="max-w-7xl mx-auto px-6 pt-24 pb-8">
-          <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Projects
-          </Link>
-        </div>
-
         {/* Hero Section */}
-        <section className="max-w-7xl mx-auto px-6 pb-16">
+        <section className="max-w-7xl mx-auto px-6 pt-24 pb-16">
           <motion.div initial={{
           opacity: 0,
           y: 20
@@ -47,8 +38,8 @@ export function ProjectDetail() {
         }} transition={{
           duration: 0.6
         }}>
-            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-blue-600 mb-4">
-              {project.category}
+            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-[#007AFF] mb-4">
+              {Array.isArray(project.category) ? project.category.join(' • ') : project.category}
             </span>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-gray-900 mb-6">
               {project.title}
@@ -59,7 +50,7 @@ export function ProjectDetail() {
           </motion.div>
         </section>
 
-        {/* Hero Image */}
+        {/* Main Image */}
         <motion.section initial={{
         opacity: 0,
         scale: 0.95
@@ -69,43 +60,14 @@ export function ProjectDetail() {
       }} transition={{
         duration: 0.8,
         delay: 0.2
-      }} className="max-w-7xl mx-auto px-6 mb-24">
-          <div className="aspect-[16/9] rounded-3xl overflow-hidden bg-gray-100">
-            <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover" />
+      }} className="max-w-7xl mx-auto px-6 mb-12">
+          <div className={`overflow-hidden rounded-3xl ${project.title === 'Design Sketching' ? 'aspect-[16/9]' : ''}`}>
+            <img src={project.imageUrl} alt={project.title} className={`w-full ${project.title === 'Design Sketching' ? 'h-full object-cover object-left' : 'h-auto'} rounded-3xl`} />
           </div>
         </motion.section>
 
-        {/* Technical Specs */}
-        {project.specs && <section className="bg-gray-50 py-16 mb-24">
-            <div className="max-w-7xl mx-auto px-6">
-              <h2 className="text-3xl font-semibold text-gray-900 mb-12 text-center">
-                Technical Specifications
-              </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                {project.specs.map((spec, idx) => <motion.div key={spec.label} initial={{
-              opacity: 0,
-              y: 20
-            }} whileInView={{
-              opacity: 1,
-              y: 0
-            }} viewport={{
-              once: true
-            }} transition={{
-              delay: idx * 0.1
-            }} className="text-center">
-                    <p className="text-4xl font-semibold text-gray-900 mb-2">
-                      {spec.value}
-                    </p>
-                    <p className="text-sm text-gray-500 uppercase tracking-wide">
-                      {spec.label}
-                    </p>
-                  </motion.div>)}
-              </div>
-            </div>
-          </section>}
-
-        {/* Overview Section */}
-        <section className="max-w-4xl mx-auto px-6 mb-24">
+        {/* Descriptive Paragraph */}
+        {project.detailDescription && <section className="max-w-4xl mx-auto px-6 mb-16">
           <motion.div initial={{
           opacity: 0,
           y: 20
@@ -115,99 +77,78 @@ export function ProjectDetail() {
         }} viewport={{
           once: true
         }}>
-            <h2 className="text-3xl font-semibold text-gray-900 mb-6">
-              Overview
-            </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              {project.overview || project.description}
+              {project.detailDescription}
             </p>
           </motion.div>
-        </section>
+        </section>}
 
-        {/* Challenge & Solution */}
-        {(project.challenge || project.solution) && <section className="bg-gray-900 text-white py-24 mb-24">
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                {project.challenge && <motion.div initial={{
-              opacity: 0,
-              x: -20
-            }} whileInView={{
-              opacity: 1,
-              x: 0
-            }} viewport={{
-              once: true
-            }}>
-                    <h3 className="text-2xl font-semibold mb-6">
-                      The Challenge
-                    </h3>
-                    <p className="text-gray-300 leading-relaxed text-lg">
-                      {project.challenge}
-                    </p>
-                  </motion.div>}
-                {project.solution && <motion.div initial={{
-              opacity: 0,
-              x: 20
-            }} whileInView={{
-              opacity: 1,
-              x: 0
-            }} viewport={{
-              once: true
-            }}>
-                    <h3 className="text-2xl font-semibold mb-6">
-                      The Solution
-                    </h3>
-                    <p className="text-gray-300 leading-relaxed text-lg">
-                      {project.solution}
-                    </p>
-                  </motion.div>}
-              </div>
+        {/* Images with Captions - Flexible Layout */}
+        {project.detailImages && project.detailImages.length > 0 && <section className="max-w-7xl mx-auto px-6 mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {project.detailImages.map((detailImage, idx) => {
+                const size = detailImage.size || 'half';
+                const aspectRatio = detailImage.aspectRatio || 'auto';
+                
+                // Check if image is a GIF - make all GIFs full-width
+                const isGif = detailImage.imageUrl.toLowerCase().endsWith('.gif');
+                const finalSize = isGif ? 'full' : size;
+                
+                // Check if image is vertical (portrait orientation)
+                const isVertical = detailImage.aspectRatio === 'portrait';
+                
+                // Vertical images should not be full-width
+                const effectiveSize = isVertical ? 'half' : finalSize;
+                
+                // Determine grid column span based on size
+                const colSpan = effectiveSize === 'full' ? 'md:col-span-2' : 
+                               effectiveSize === 'two-thirds' ? 'md:col-span-2' :
+                               effectiveSize === 'one-third' ? 'md:col-span-1' : 
+                               'md:col-span-1';
+                
+                // Determine aspect ratio - use auto for natural aspect ratio
+                const useNaturalAspect = aspectRatio === 'auto';
+                
+                return (
+                  <motion.div 
+                    key={idx} 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
+                    className={colSpan}
+                  >
+                    {useNaturalAspect ? (
+                      <div className="mb-4">
+                        <img 
+                          src={detailImage.imageUrl} 
+                          alt="" 
+                          className="w-full h-auto rounded-2xl" 
+                        />
+                      </div>
+                    ) : (
+                      <div className={`${aspectRatio === 'landscape' ? 'aspect-[16/9]' : aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square'} rounded-2xl overflow-hidden mb-4`}>
+                        <img 
+                          src={detailImage.imageUrl} 
+                          alt="" 
+                          className="w-full h-full object-cover" 
+                        />
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
             </div>
           </section>}
 
-        {/* Process Images */}
-        {project.processImages && project.processImages.length > 0 && <section className="max-w-7xl mx-auto px-6 mb-24">
-            <h2 className="text-3xl font-semibold text-gray-900 mb-12 text-center">
-              Design Process
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {project.processImages.map((imageUrl, idx) => <motion.div key={idx} initial={{
-            opacity: 0,
-            y: 20
-          }} whileInView={{
-            opacity: 1,
-            y: 0
-          }} viewport={{
-            once: true
-          }} transition={{
-            delay: idx * 0.1
-          }} className="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100">
-                  <img src={imageUrl} alt={`Process step ${idx + 1}`} className="w-full h-full object-cover" />
-                </motion.div>)}
-            </div>
-          </section>}
+        {/* Back Button at Bottom */}
+        <div className="max-w-7xl mx-auto px-6 pb-12">
+          <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Projects
+          </Link>
+        </div>
 
-        {/* CTA Section */}
-        <section className="max-w-4xl mx-auto px-6 py-24 text-center">
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} viewport={{
-          once: true
-        }}>
-            <h2 className="text-3xl font-semibold text-gray-900 mb-6">
-              Interested in collaborating?
-            </h2>
-            <p className="text-xl text-gray-500 mb-8">
-              Let's discuss how we can work together on your next project.
-            </p>
-            <Link to="/contact" className="inline-block bg-gray-900 text-white font-medium px-8 py-4 rounded-xl hover:bg-black transition-colors">
-              Get in Touch
-            </Link>
-          </motion.div>
-        </section>
       </main>
 
       <Footer />

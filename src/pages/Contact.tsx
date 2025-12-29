@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { PageHeader } from '../components/PageHeader';
 import { Footer } from '../components/Footer';
-import { Mail, MapPin, Phone, CheckCircle, Loader2 } from 'lucide-react';
+import { Mail, MapPin, CheckCircle, Loader2 } from 'lucide-react';
 export function Contact() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
   const handleSubmit = (e: React.FormEvent) => {
@@ -18,7 +18,7 @@ export function Contact() {
       <Navbar />
 
       <main>
-        <PageHeader title="Get in Touch" subtitle="Have a project in mind? Let's discuss how we can build something extraordinary together." />
+        <PageHeader title="Get in Touch" subtitle="Have a project in mind?" />
 
         <div className="max-w-7xl mx-auto px-6 pb-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -37,9 +37,7 @@ export function Contact() {
                   Contact Information
                 </h3>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  I'm currently available for freelance projects and consulting.
-                  Whether you have a question about my work or want to
-                  collaborate, I'd love to hear from you.
+                  I'm currently full-time as a student and startup founder but always open to new opportunities.
                 </p>
               </div>
 
@@ -49,22 +47,15 @@ export function Contact() {
                   <div>
                     <p className="font-medium text-gray-900">Email</p>
                     <a href="mailto:hello@example.com" className="text-gray-600 hover:text-blue-600 transition-colors">
-                      hello@example.com
+                      nathan.p.hammerschmitt.le.gal.27@dartmouth.edu
                     </a>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <Phone className="w-6 h-6 text-blue-600 mt-1 mr-4" />
-                  <div>
-                    <p className="font-medium text-gray-900">Phone</p>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <MapPin className="w-6 h-6 text-blue-600 mt-1 mr-4" />
                   <div>
                     <p className="font-medium text-gray-900">Location</p>
-                    <p className="text-gray-600">San Francisco, CA</p>
+                    <p className="text-gray-600">Boston, MA | Hanover, NH</p>
                   </div>
                 </div>
               </div>
@@ -76,11 +67,11 @@ export function Contact() {
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                   </span>
                   <span className="font-medium text-sm uppercase tracking-wide">
-                    Available for work
+                    Seeking an Internship
                   </span>
                 </div>
                 <p className="text-sm text-gray-500">
-                  Currently accepting new projects for Q4 2023.
+                  Currently applying for Summer 2026 roles.
                 </p>
               </div>
             </motion.div>
@@ -113,25 +104,25 @@ export function Contact() {
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       Name
                     </label>
-                    <input type="text" id="name" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white" placeholder="John Doe" />
+                    <input type="text" id="name" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white" placeholder="Nate" />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                       Email
                     </label>
-                    <input type="email" id="email" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white" placeholder="john@example.com" />
+                    <input type="email" id="email" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white" placeholder="nate@example.com" />
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                       Message
                     </label>
-                    <textarea id="message" required rows={4} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white resize-none" placeholder="Tell me about your project..." />
+                    <textarea id="message" required rows={4} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white resize-none" placeholder="What's up...?" />
                   </div>
                   <button type="submit" disabled={formState === 'submitting'} className="w-full bg-gray-900 text-white font-medium py-4 rounded-xl hover:bg-black transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center">
                     {formState === 'submitting' ? <>
                         <Loader2 className="animate-spin mr-2" size={20} />
                         Sending...
-                      </> : 'Send Message'}
+                      </> : 'Send'}
                   </button>
                 </form>}
             </motion.div>
