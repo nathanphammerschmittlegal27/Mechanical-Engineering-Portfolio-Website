@@ -45,22 +45,25 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
   detailImages: [{
     imageUrl: '/images/projects/Dino Robot Walker/dino-drawing1.webp',
-    aspectRatio: 'auto'
+    aspectRatio: 'auto',
+    size: 'two-thirds'
   }, {
     imageUrl: '/images/projects/Dino Robot Walker/dino-drawing2.webp',
-    aspectRatio: 'auto'
+    aspectRatio: 'auto',
+    size: 'two-thirds'
   }, {
     imageUrl: '/images/projects/Dino Robot Walker/robot-walker.gif',
     aspectRatio: 'auto',
     size: 'full'
   }, {
     imageUrl: '/images/projects/Dino Robot Walker/dino-solidworks-isometric.webp',
+    aspectRatio: 'auto',
+    size: 'two-thirds'
+  }, {
+    imageUrl: '/images/projects/Dino Robot Walker/dino-real-isometric2.webp',
     aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Dino Robot Walker/dino-real-isometric1.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Dino Robot Walker/dino-real-isometric2.webp',
     aspectRatio: 'auto'
   }]
 }, {
@@ -132,7 +135,8 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/3D Printed Footwear /nexus-website.webp',
-    aspectRatio: 'auto'
+    aspectRatio: 'auto',
+    size: 'two-thirds'
   }]
 }, {
   id: '3',
@@ -247,14 +251,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     size: 'half',
     aspectRatio: 'auto'
   }, {
-    imageUrl: '/images/projects/Airpods Max Redesign/apm-assembly-drawing.webp',
-    size: 'full',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Airpods Max Redesign/apm-ear-closeup.webp',
-    size: 'half',
-    aspectRatio: 'auto'
-  }, {
     imageUrl: '/images/projects/Airpods Max Redesign/apm-slide1.webp',
     size: 'full',
     aspectRatio: 'auto'
@@ -265,6 +261,14 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   }, {
     imageUrl: '/images/projects/Airpods Max Redesign/apm-slide3.webp',
     size: 'full',
+    aspectRatio: 'auto'
+  }, {
+    imageUrl: '/images/projects/Airpods Max Redesign/apm-assembly-drawing.webp',
+    size: 'half',
+    aspectRatio: 'auto'
+  }, {
+    imageUrl: '/images/projects/Airpods Max Redesign/apm-ear-closeup.webp',
+    size: 'half',
     aspectRatio: 'auto'
   }]
 }, {
@@ -295,26 +299,20 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     imageUrl: '/images/projects/Truss Bridge /truss-sketch.webp',
     aspectRatio: 'auto'
   }, {
-    imageUrl: '/images/projects/Truss Bridge /truss-v1-dualview-sw.webp',
+    imageUrl: '/images/projects/Truss Bridge /truss-sap2000.webp',
     aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Truss Bridge /bridge-break-gif.gif',
     aspectRatio: 'auto',
     size: 'full'
   }, {
+    imageUrl: '/images/projects/Truss Bridge /truss-v1-dualview-sw.webp',
+    aspectRatio: 'auto'
+  }, {
     imageUrl: '/images/projects/Truss Bridge /truss-v1-dualview-fea.webp',
     aspectRatio: 'auto'
   }, {
-    imageUrl: '/images/projects/Truss Bridge /truss-v1-buckling.webp',
-    aspectRatio: 'auto'
-  }, {
     imageUrl: '/images/projects/Truss Bridge /truss-v2-isometric-sw.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Truss Bridge /truss-v2-isometricdual-sw.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Truss Bridge /truss-v2-fea-blue.webp',
     aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Truss Bridge /truss-v2-fea-final.webp',
@@ -323,19 +321,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     imageUrl: '/images/projects/Truss Bridge /truss-v2-fea-closeup-final.webp',
     aspectRatio: 'auto'
   }, {
-    imageUrl: '/images/projects/Truss Bridge /truss-v2-deflection.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Truss Bridge /truss-v2-deflection-final.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Truss Bridge /truss-v2-buckling.webp',
-    aspectRatio: 'auto'
-  }, {
     imageUrl: '/images/projects/Truss Bridge /truss-v2-buckling-2kn.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Truss Bridge /truss-sap2000.webp',
     aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Truss Bridge /truss-failure.webp',
@@ -419,6 +405,10 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     aspectRatio: 'auto',
     size: 'full'
   }, {
+    imageUrl: '/images/projects/Microfluidics Research /northeastern-ysp-poster.webp',
+    aspectRatio: 'auto',
+    size: 'full'
+  }, {
     imageUrl: '/images/projects/Microfluidics Research /alginate-overhead.webp',
     aspectRatio: 'auto'
   }, {
@@ -430,10 +420,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   }, {
     imageUrl: '/images/projects/Microfluidics Research /rheometer.webp',
     aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Microfluidics Research /northeastern-ysp-poster.webp',
-    aspectRatio: 'auto',
-    size: 'full'
   }]
 }, {
   id: '8',
@@ -668,19 +654,19 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
   detailImages: [{
     imageUrl: '/images/projects/Drawing /portrait-pondering.webp',
-    aspectRatio: 'portrait'
+    aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Drawing /portrait-profile.webp',
-    aspectRatio: 'portrait'
+    aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Drawing /portrait-overhead.webp',
-    aspectRatio: 'portrait'
+    aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Drawing /portrait-eye-cover.webp',
-    aspectRatio: 'portrait'
+    aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Drawing /portrait-winking.webp',
-    aspectRatio: 'portrait'
+    aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Drawing /drawing-spoon.webp',
     aspectRatio: 'auto'
