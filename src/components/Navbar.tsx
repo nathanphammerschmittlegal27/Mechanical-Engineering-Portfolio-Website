@@ -22,7 +22,7 @@ export function Navbar() {
     name: 'Contact',
     href: '/contact'
   }];
-  return <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-50/50 backdrop-blur-sm border-b border-gray-200/30">
+  return <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-50/50 backdrop-blur-sm border-b border-gray-200/30 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08)]">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link to="/" className="text-xl font-semibold tracking-tight text-gray-900">
           Nathan Hammerschmitt Le Gal

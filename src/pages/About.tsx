@@ -22,7 +22,7 @@ export function About() {
             }} transition={{
               duration: 0.6
             }} className="md:col-span-1">
-              <img src="/images/about/profile-picture.webp" alt="Nathan" className="w-full rounded-2xl object-cover" />
+              <img src="/images/about/profile-picture.webp" alt="Nathan" className="w-full rounded-2xl object-cover shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]" />
             </motion.div>
             
             {/* Bio Text */}
@@ -82,10 +82,10 @@ export function About() {
               duration: 0.6,
               delay: 0.2
             }} className="md:col-span-2 grid grid-cols-5 gap-4">
-              <div className="col-span-3 h-[400px] overflow-hidden rounded-2xl">
+              <div className="col-span-3 h-[400px] overflow-hidden rounded-2xl shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]">
                 <img src="/images/about/nathan-finish.webp" alt="Triathlon Finish" className="w-full h-full object-cover object-center" />
               </div>
-              <div className="col-span-2 h-[400px] overflow-hidden rounded-2xl">
+              <div className="col-span-2 h-[400px] overflow-hidden rounded-2xl shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]">
                 <img src="/images/about/nathan-podium.webp" alt="Triathlon Podium" className="w-full h-full object-cover object-[50%_20%]" />
               </div>
             </motion.div>
@@ -259,7 +259,7 @@ export function About() {
               Resume
             </h2>
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6">
-              <div className="aspect-[8.5/11] bg-gray-50 rounded-lg overflow-hidden mb-6">
+              <div className="aspect-[8.5/11] bg-gray-50 rounded-lg overflow-hidden mb-6 shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]">
                 <img src="/images/about/resume-preview.png" alt="Resume Preview" className="w-full h-full object-contain" />
               </div>
               <div className="text-center">

@@ -85,7 +85,7 @@ export function Contact() {
             x: 0
           }} transition={{
             delay: 0.4
-          }} className="bg-gray-50 p-8 rounded-3xl">
+          }} className="bg-gray-50 p-8 rounded-3xl shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]">
               {formState === 'success' ? <div className="h-full flex flex-col items-center justify-center text-center py-12">
                   <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
                     <CheckCircle size={32} />

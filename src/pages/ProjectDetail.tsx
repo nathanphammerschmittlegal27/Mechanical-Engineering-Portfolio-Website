@@ -61,7 +61,7 @@ export function ProjectDetail() {
         duration: 0.8,
         delay: 0.2
       }} className="max-w-7xl mx-auto px-6 mb-12">
-          <div className={`overflow-hidden rounded-3xl ${project.title === 'Design Sketching' ? 'aspect-[16/9]' : ''}`}>
+          <div className={`max-w-4xl overflow-hidden rounded-3xl shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)] ${project.title === 'Design Sketching' ? 'aspect-[16/9]' : ''}`}>
             <img src={project.imageUrl} alt={project.title} className={`w-full ${project.title === 'Design Sketching' ? 'h-full object-cover object-left' : 'h-auto'} rounded-3xl`} />
           </div>
         </motion.section>
@@ -85,6 +85,7 @@ export function ProjectDetail() {
 
         {/* Images with Captions - Flexible Layout */}
         {project.detailImages && project.detailImages.length > 0 && <section className="max-w-7xl mx-auto px-6 mb-24">
+            <div className="max-w-4xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {project.detailImages.map((detailImage, idx) => {
                 const size = detailImage.size || 'half';
@@ -123,11 +124,11 @@ export function ProjectDetail() {
                         <img 
                           src={detailImage.imageUrl} 
                           alt="" 
-                          className="w-full h-auto rounded-2xl" 
+                          className="w-full h-auto rounded-2xl shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]" 
                         />
                       </div>
                     ) : (
-                      <div className={`${aspectRatio === 'landscape' ? 'aspect-[16/9]' : aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square'} rounded-2xl overflow-hidden mb-4`}>
+                      <div className={`${aspectRatio === 'landscape' ? 'aspect-[16/9]' : aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square'} rounded-2xl overflow-hidden mb-4 shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]`}>
                         <img 
                           src={detailImage.imageUrl} 
                           alt="" 
@@ -139,11 +140,12 @@ export function ProjectDetail() {
                 );
               })}
             </div>
+            </div>
           </section>}
 
         {/* Back Button at Bottom */}
         <div className="max-w-7xl mx-auto px-6 pb-12">
-          <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+          <Link to="/" className="inline-flex items-center bg-gray-900 text-white font-medium px-8 py-3 rounded-xl hover:bg-black transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Projects
           </Link>
