@@ -36,9 +36,6 @@ export function Contact() {
                 <h3 className="text-2xl font-semibold text-gray-900 mb-6">
                   Contact Information
                 </h3>
-                <p className="text-gray-600 mb-8 leading-relaxed">
-                  I'm currently full-time as a student and startup founder but always open to new opportunities.
-                </p>
               </div>
 
               <div className="space-y-6">

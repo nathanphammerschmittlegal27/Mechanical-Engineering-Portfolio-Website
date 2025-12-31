@@ -40,7 +40,7 @@ export function About() {
                 I'm Nathan, an Engineering and Studio Art major at Dartmouth College. I was the first student from my high school accepted into an Ivy League College.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                I'm building technical skills and working on projects, applying engineering and design principles to create real products and build something people want—whether it's a physical item, process, or service.
+                I'm interested in all things hardware and am always building my skills through projects. I want to make something people want—something that works too well.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
                 I'm actively seeking roles in <strong>mechanical engineering, product design, robotics, and manufacturing</strong>.

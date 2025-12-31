@@ -23,7 +23,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '1',
   title: 'Dino Robot Walker',
   category: 'Mechanical',
-  description: 'An ambulatory robot that converts rotational motion into translational motion using a 4-bar linkage.',
+  description: 'March - May 2025',
   imageUrl: '/images/projects/Dino Robot Walker/dino-cover.webp',
   overview: 'Designed a next-generation drone frame using advanced generative design algorithms and carbon fiber composite materials. The project focused on maximizing flight time while maintaining structural integrity under various payload conditions.',
   challenge: 'Traditional drone frames struggle with the balance between weight reduction and structural strength, especially when carrying heavy sensor payloads for extended periods.',
@@ -42,7 +42,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Payload Capacity',
     value: '2.5 kg'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'I designed and built a walking "Dino" robot for my kinematics and computer aided design class. A 4-bar linkage converts rotational motion into translational motion; I used a geogebra kinematics tool to optimize the coupler foot path relative the robot body. The final assembly uses a combination of 3D-printed and laser-cut components, fasteners, servos, and a radio receiver. This project required extensive Solidworks use, a custom linkage design, and correct tolerances between components to ensure smooth movement.',
   detailImages: [{
     imageUrl: '/images/projects/Dino Robot Walker/dino-drawing1.webp',
     aspectRatio: 'auto',
@@ -70,7 +70,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '2',
   title: '3D Printed Footwear',
   category: ['Mechanical', 'Industrial Design'],
-  description: 'Custom-fit and printed footwear made from digital scans.',
+  description: 'February 2025 - Present',
   imageUrl: '/images/projects/3D Printed Footwear /nexus-cover.webp',
   overview: 'Developed a precision hydraulic actuator system for industrial robotic arms requiring high force output with minimal position error. The system integrates servo valves with closed-loop feedback for sub-millimeter accuracy.',
   challenge: 'Existing hydraulic systems lacked the precision needed for modern manufacturing tasks, with position errors exceeding 5mm under full load conditions.',
@@ -89,17 +89,21 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Operating Pressure',
     value: '250 bar'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'I\'ve been 3D-printing footwear using FDM as an ongoing side project. Conventional footwear is made using dozens of hand-stitched and glued components overseas, requires companies to order mass quantities of inventory, and has a large carbon footprint from a complex supply chain. 3D-printed footwear solves all of these problems: it can be made on demand, domestically, and with minor waste. This project has grown in scale and I\'m currently working with two other Dartmouth students to commercialize custom-fit and printed everyday shoes. Check it out at nexusfootwear.com.',
   detailImages: [{
+    imageUrl: '/images/projects/3D Printed Footwear /nexus-website.webp',
+    aspectRatio: 'auto',
+    size: 'full'
+  }, {
+    imageUrl: '/images/projects/3D Printed Footwear /shoe-print.gif',
+    aspectRatio: 'auto',
+    size: 'full'
+  }, {
     imageUrl: '/images/projects/3D Printed Footwear /nexus-blender-front.webp',
     aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/3D Printed Footwear /nexus-blender-profile.webp',
     aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/3D Printed Footwear /shoe-print.gif',
-    aspectRatio: 'auto',
-    size: 'full'
   }, {
     imageUrl: '/images/projects/3D Printed Footwear /nexus-blender-rear.webp',
     aspectRatio: 'auto'
@@ -142,7 +146,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '3',
   title: 'Running Biomechanics',
   category: 'Programming',
-  description: 'Deriving angular velocity based metrics of running mechanics.',
+  description: 'June - August 2024',
   imageUrl: '/images/projects/Running Biomechanics /biomechanics-cover.webp',
   overview: 'Engineered an advanced liquid cooling system for electric vehicle battery packs to maintain optimal operating temperatures and extend battery life. The design prioritizes uniform temperature distribution across all cells.',
   challenge: 'High-density battery packs generate significant heat during charging and discharge cycles, leading to thermal gradients that reduce performance and lifespan.',
@@ -161,7 +165,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Efficiency Gain',
     value: '15%'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'I worked as a research assistant in the Integrated Locomotion Laboratory at the University of Massachusetts Amherst (UMILL). I independently pursued a project deriving angular velocity based metrics of outdoor running from Inertial Measurement Units, and I assisted graduate students on their projects.',
   detailImages: [{
     imageUrl: '/images/projects/Running Biomechanics /imu-analysis-timeline.webp',
     aspectRatio: 'auto'
@@ -222,7 +226,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '4',
   title: 'AirPods Max Redesign',
   category: ['Mechanical', 'Industrial Design'],
-  description: 'Brief description of your project that will appear on the project card.',
+  description: 'November 2025',
   imageUrl: '/images/projects/Airpods Max Redesign/apm-cover.webp',
   overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
   challenge: 'Describe the challenge or problem your project addresses.',
@@ -241,7 +245,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Spec 4',
     value: 'Value 4'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'Detailed project description coming soon.',
   detailImages: [{
     imageUrl: '/images/projects/Airpods Max Redesign/apm-head-isometric.webp',
     size: 'half',
@@ -275,7 +279,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '5',
   title: 'Truss Bridge',
   category: 'Mechanical',
-  description: 'Made in solid mechanics class',
+  description: 'March - May 2025',
   imageUrl: '/images/projects/Truss Bridge /truss-cover.webp',
   overview: 'Created a collaborative robotic arm with integrated computer vision for adaptive manufacturing tasks. The system can identify parts, adjust grip force, and perform quality inspection in real-time.',
   challenge: 'Traditional industrial robots require extensive programming for each task and cannot adapt to variations in part placement or quality, leading to production delays.',
@@ -294,7 +298,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Vision Resolution',
     value: '12 MP'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'Detailed project description coming soon.',
   detailImages: [{
     imageUrl: '/images/projects/Truss Bridge /truss-sketch.webp',
     aspectRatio: 'auto'
@@ -331,7 +335,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '6',
   title: 'Other CAD',
   category: ['Mechanical', 'Industrial Design'],
-  description: 'Brief description of your project that will appear on the project card.',
+  description: 'September 2022 - Present',
   imageUrl: '/images/projects/Other CAD/other-cad-cover.webp',
   overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
   challenge: 'Describe the challenge or problem your project addresses.',
@@ -350,7 +354,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Spec 4',
     value: 'Value 4'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'Detailed project description coming soon.',
   detailImages: [{
     imageUrl: '/images/projects/Other CAD/geneva-wheel-drawing.webp',
     aspectRatio: 'auto'
@@ -374,7 +378,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '7',
   title: 'Microfluidics Research',
   category: 'Mechanical',
-  description: 'Brief description of your project that will appear on the project card.',
+  description: 'July - August 2022',
   imageUrl: '/images/projects/Microfluidics Research /microfluidics-cover.webp',
   overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
   challenge: 'Describe the challenge or problem your project addresses.',
@@ -393,7 +397,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Spec 4',
     value: 'Value 4'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'Detailed project description coming soon.',
   detailImages: [{
     imageUrl: '/images/projects/Microfluidics Research /complex-fluids-logo.webp',
     aspectRatio: 'auto'
@@ -425,7 +429,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '8',
   title: 'Modular Running Shoe',
   category: 'Mechanical',
-  description: 'Brief description of your project that will appear on the project card.',
+  description: 'February - September 2025',
   imageUrl: '/images/projects/Modular Running Shoe/modular-cover.png',
   overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
   challenge: 'Describe the challenge or problem your project addresses.',
@@ -444,15 +448,18 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Spec 4',
     value: 'Value 4'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'I led a team of three students to design a running shoe with interchangeable midsole/outsole components, since conventional running shoes only last approximately 400 miles. By swapping out the parts of the shoe that wear the fastest, the total shoe lifespan increases substantially, since the foam midsole and rubber outsole are what compress and wear down the fastest. This project required significant mechanical design, finite element analysis, and 3D printing to successfully complete.',
   detailImages: [{
-    imageUrl: '/images/projects/Modular Running Shoe/modular-sketch.png',
-    aspectRatio: 'auto'
-  }, {
     imageUrl: '/images/projects/Modular Running Shoe/modular-ideation.png',
     aspectRatio: 'auto'
   }, {
-    imageUrl: '/images/projects/Modular Running Shoe/modular-fea.png',
+    imageUrl: '/images/projects/Modular Running Shoe/modular-sketch.png',
+    aspectRatio: 'auto'
+  }, {
+    imageUrl: '/images/projects/Modular Running Shoe/modular-sw1.png',
+    aspectRatio: 'auto'
+  }, {
+    imageUrl: '/images/projects/Modular Running Shoe/modular-sw2.png',
     aspectRatio: 'auto'
   }, {
     imageUrl: '/images/projects/Modular Running Shoe/modular-techpack1.png',
@@ -486,7 +493,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '9',
   title: 'Desk Lamp',
   category: 'Industrial Design',
-  description: 'A configurable lamp made with digital fabrication.',
+  description: 'January - March 2025',
   imageUrl: '/images/projects/Desk Lamp/lamp-cover.webp',
   overview: 'Redesigned turbine blade geometry for next-generation jet engines using computational fluid dynamics and additive manufacturing techniques. The new design achieves higher efficiency while reducing manufacturing complexity.',
   challenge: 'Conventional turbine blades are limited by traditional manufacturing constraints, preventing optimal aerodynamic profiles that could significantly improve engine efficiency.',
@@ -505,7 +512,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Manufacturing',
     value: 'SLM'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'Detailed project description coming soon.',
   detailImages: [{
     imageUrl: '/images/projects/Desk Lamp/lamp-isometric-light.webp',
     aspectRatio: 'auto'
@@ -565,7 +572,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '10',
   title: 'Design Sketching',
   category: ['Art', 'Industrial Design'],
-  description: 'Multi-axis joint mechanism mimicking natural gait patterns with adaptive damping control.',
+  description: 'March - May 2024',
   imageUrl: '/images/projects/Design Sketching/engs11-cover.webp',
   overview: 'Developed an advanced prosthetic knee joint with microprocessor-controlled damping that adapts to different walking speeds and terrain conditions, providing a more natural gait for amputees.',
   challenge: 'Traditional prosthetic joints use fixed damping, resulting in unnatural movement patterns and increased energy expenditure for users across varying activities.',
@@ -584,7 +591,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Max Load',
     value: '120 kg'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'Detailed project description coming soon.',
   detailImages: [{
     imageUrl: '/images/projects/Design Sketching/engs11-bike-kinematics.webp',
     aspectRatio: 'auto'
@@ -632,7 +639,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   id: '11',
   title: 'Drawing',
   category: 'Art',
-  description: 'Brief description of your project that will appear on the project card.',
+  description: 'September - December 2024',
   imageUrl: '/images/projects/Drawing /eye-cover.jpeg',
   overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
   challenge: 'Describe the challenge or problem your project addresses.',
@@ -651,23 +658,8 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Spec 4',
     value: 'Value 4'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'Detailed project description coming soon.',
   detailImages: [{
-    imageUrl: '/images/projects/Drawing /portrait-pondering.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Drawing /portrait-profile.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Drawing /portrait-overhead.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Drawing /portrait-eye-cover.webp',
-    aspectRatio: 'auto'
-  }, {
-    imageUrl: '/images/projects/Drawing /portrait-winking.webp',
-    aspectRatio: 'auto'
-  }, {
     imageUrl: '/images/projects/Drawing /drawing-spoon.webp',
     aspectRatio: 'auto'
   }, {
@@ -700,12 +692,24 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   }, {
     imageUrl: '/images/projects/Drawing /statues-gallery.webp',
     aspectRatio: 'auto'
+  }, {
+    imageUrl: '/images/projects/Drawing /portrait-pondering.webp',
+    aspectRatio: 'auto'
+  }, {
+    imageUrl: '/images/projects/Drawing /portrait-overhead.webp',
+    aspectRatio: 'auto'
+  }, {
+    imageUrl: '/images/projects/Drawing /portrait-eye-cover.webp',
+    aspectRatio: 'auto'
+  }, {
+    imageUrl: '/images/projects/Drawing /portrait-winking.webp',
+    aspectRatio: 'auto'
   }]
 }, {
   id: '12',
   title: 'Sculpture',
   category: 'Art',
-  description: 'Brief description of your project that will appear on the project card.',
+  description: 'July - August 2025',
   imageUrl: '/images/projects/Sculpture /sculpture-cover.webp',
   overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
   challenge: 'Describe the challenge or problem your project addresses.',
@@ -724,7 +728,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
     label: 'Spec 4',
     value: 'Value 4'
   }],
-  detailDescription: 'Add your detailed project description here. This paragraph will appear underneath the main image on the project detail page.',
+  detailDescription: 'Detailed project description coming soon.',
   detailImages: [{
     imageUrl: '/images/projects/Sculpture /sculpture-1.webp',
     aspectRatio: 'auto'
