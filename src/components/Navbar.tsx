@@ -23,8 +23,8 @@ export function Navbar() {
     href: '/contact'
   }];
   return <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-100/60 backdrop-blur-sm border-b border-gray-200/30 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08)]">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="text-xl font-semibold tracking-tight text-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+        <Link to="/" className="text-base sm:text-lg md:text-xl font-semibold tracking-tight text-gray-900 truncate max-w-[60%] sm:max-w-none">
           Nathan Hammerschmitt Le Gal
         </Link>
 

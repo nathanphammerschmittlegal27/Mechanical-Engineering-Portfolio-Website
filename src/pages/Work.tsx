@@ -22,8 +22,8 @@ export function Work() {
 
         <FilterTabs categories={CATEGORIES} activeCategory={activeCategory} onSelectCategory={setActiveCategory} />
 
-        <div className="max-w-7xl mx-auto px-6 pb-20">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-12 md:pb-20">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map(project => <ProjectCard key={project.id} project={project} />)}
             </AnimatePresence>

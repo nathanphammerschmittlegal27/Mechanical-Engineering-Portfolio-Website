@@ -9,9 +9,9 @@ export function FilterTabs({
   activeCategory,
   onSelectCategory
 }: FilterTabsProps) {
-  return <div className="flex justify-center mb-12 px-4 sticky top-20 z-40">
-      <div className="bg-gray-100/60 backdrop-blur-sm p-1 rounded-full inline-flex space-x-1 shadow-lg border border-gray-200/40 hover:scale-[1.01] transition-transform duration-200">
-        {categories.map(category => <button key={category} onClick={() => onSelectCategory(category)} className={`relative px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${activeCategory === category ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}>
+  return <div className="flex justify-center mb-8 md:mb-12 px-2 sm:px-4 sticky top-14 sm:top-16 md:top-20 z-40">
+      <div className="bg-gray-100/60 backdrop-blur-sm p-0.5 sm:p-1 rounded-full inline-flex space-x-0.5 sm:space-x-1 shadow-lg border border-gray-200/40 hover:scale-[1.01] transition-transform duration-200 overflow-x-auto max-w-full scrollbar-hide">
+        {categories.map(category => <button key={category} onClick={() => onSelectCategory(category)} className={`relative px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${activeCategory === category ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}>
             {activeCategory === category && <motion.div layoutId="activeTab" className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-full shadow-md border border-gray-200/50" transition={{
           type: 'spring',
           bounce: 0.2,
