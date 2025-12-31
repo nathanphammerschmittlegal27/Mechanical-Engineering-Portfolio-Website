@@ -15,6 +15,7 @@ interface ImageStackProps {
   gap?: number; // Gap in pixels (default 16px)
   rowGap?: number; // Gap between rows in pixels (default 16px)
   maxRowHeight?: number; // Max height for rows in pixels (default 280px desktop, 200px mobile)
+  captions?: string[]; // Optional captions for each image (one per image, in order)
 }
 
 export function ImageStack({ 
@@ -22,13 +23,16 @@ export function ImageStack({
   imagesByRow,
   gap = 16,
   rowGap = 16,
-  maxRowHeight = 280
+  maxRowHeight = 280,
+  captions = []
 }: ImageStackProps) {
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const imageContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [rowHeights, setRowHeights] = useState<{ [rowIndex: number]: number }>({});
   const [rowWidths, setRowWidths] = useState<{ [rowIndex: number]: number }>({});
   const [rows, setRows] = useState<Image[][]>([]);
+  const [imageWidths, setImageWidths] = useState<{ [imageIndex: number]: number }>({});
 
   // Build rows - either use explicit grouping or auto-wrap
   useEffect(() => {
@@ -74,6 +78,7 @@ export function ImageStack({
     const updateHeightsAndWidths = () => {
       const heights: { [rowIndex: number]: number } = {};
       const widths: { [rowIndex: number]: number } = {};
+      const imgWidths: { [imageIndex: number]: number } = {};
       
       if (!containerRef.current) return;
       const containerWidth = containerRef.current.offsetWidth;
@@ -156,11 +161,46 @@ export function ImageStack({
           }
           
           heights[rowIndex] = targetHeight;
+          
+          // Calculate and store actual image widths for caption boundaries
+          const rowScale = widths[rowIndex] || 1;
+          loadedRefs.forEach((ref, idx) => {
+            const globalImgIndex = imageIndex + idx;
+            const img = row[idx];
+            const aspectRatio = img.aspectRatio || 'auto';
+            let imageWidth: number;
+            
+            if (aspectRatio === 'auto') {
+              const naturalWidth = ref!.naturalWidth;
+              const naturalHeight = ref!.naturalHeight;
+              imageWidth = (naturalWidth / naturalHeight) * targetHeight * rowScale;
+            } else if (aspectRatio === 'landscape') {
+              imageWidth = targetHeight * rowScale * (16/9);
+            } else if (aspectRatio === 'portrait') {
+              imageWidth = targetHeight * rowScale * (3/4);
+            } else { // square
+              imageWidth = targetHeight * rowScale;
+            }
+            
+            // Apply size constraints for single images
+            if (row.length === 1 && img.size) {
+              if (img.size === 'two-thirds') {
+                imageWidth = containerWidth * 0.666;
+              } else if (img.size === 'half') {
+                imageWidth = containerWidth * 0.5;
+              } else if (img.size === 'one-third') {
+                imageWidth = containerWidth * 0.333;
+              }
+            }
+            
+            imgWidths[globalImgIndex] = imageWidth;
+          });
         }
       });
       
       setRowHeights(heights);
       setRowWidths(widths);
+      setImageWidths(imgWidths);
     };
 
     const checkAllLoaded = () => {
@@ -182,9 +222,73 @@ export function ImageStack({
       checkAllLoaded();
     }
     
-    window.addEventListener('resize', updateHeightsAndWidths);
+    // Measure actual rendered widths of images for captions
+    const measureImageWidths = () => {
+      const widths: { [imageIndex: number]: number } = {};
+      imageRefs.current.forEach((img, index) => {
+        if (img && img.offsetWidth > 0) {
+          // Use the image's actual rendered width
+          widths[index] = img.offsetWidth;
+        }
+      });
+      if (Object.keys(widths).length > 0) {
+        setImageWidths(prev => ({ ...prev, ...widths }));
+      }
+    };
+
+    // Measure widths after images are loaded and rendered
+    const checkAndMeasure = () => {
+      let allLoaded = true;
+      imageRefs.current.forEach((img) => {
+        if (img && (!img.complete || img.naturalHeight === 0)) {
+          allLoaded = false;
+        }
+      });
+      
+      if (allLoaded && rows.length > 0 && Object.keys(rowHeights).length > 0) {
+        setTimeout(measureImageWidths, 100);
+      } else if (rows.length > 0) {
+        setTimeout(checkAndMeasure, 100);
+      }
+    };
+
+    if (rows.length > 0) {
+      checkAndMeasure();
+    }
+
+    window.addEventListener('resize', () => {
+      updateHeightsAndWidths();
+      setTimeout(measureImageWidths, 200);
+    });
     return () => window.removeEventListener('resize', updateHeightsAndWidths);
-  }, [rows, maxRowHeight, gap]);
+  }, [rows, maxRowHeight, gap, rowHeights]);
+
+  // Use ResizeObserver to measure image widths when they change
+  useEffect(() => {
+    const observers: ResizeObserver[] = [];
+    
+    imageRefs.current.forEach((img, index) => {
+      if (img) {
+        const observer = new ResizeObserver((entries) => {
+          for (const entry of entries) {
+            const width = entry.contentRect.width;
+            if (width > 0) {
+              setImageWidths(prev => ({
+                ...prev,
+                [index]: width
+              }));
+            }
+          }
+        });
+        observer.observe(img);
+        observers.push(observer);
+      }
+    });
+    
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, [rows, rowHeights]);
 
   // Calculate global image index
   const getGlobalImageIndex = (rowIndex: number, imageIndexInRow: number): number => {
@@ -246,9 +350,24 @@ export function ImageStack({
                 }
               }
               
+              const caption = captions[globalIndex];
+              // Get measured width from state, or use the image's current offsetWidth
+              let imageWidth = imageWidths[globalIndex];
+              
+              // If no measured width in state, try to get it from the image element directly
+              if (!imageWidth) {
+                const img = imageRefs.current[globalIndex];
+                if (img && img.offsetWidth > 0) {
+                  imageWidth = img.offsetWidth;
+                }
+              }
+              
               return (
                 <motion.div
                   key={globalIndex}
+                  ref={(el) => {
+                    imageContainerRefs.current[globalIndex] = el;
+                  }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -258,7 +377,9 @@ export function ImageStack({
                     flexShrink: needsScaling ? 1 : 0,
                     minWidth: 0,
                     width: maxWidthStyle ? maxWidthStyle : 'auto',
-                    maxWidth: maxWidthStyle ? maxWidthStyle : undefined
+                    maxWidth: maxWidthStyle ? maxWidthStyle : undefined,
+                    display: 'flex',
+                    flexDirection: 'column'
                   }}
                 >
                   {useNaturalAspect ? (
@@ -293,7 +414,16 @@ export function ImageStack({
                           objectFit: 'contain'
                         }}
                         onLoad={() => {
-                          // Trigger height recalculation
+                          // Measure this specific image's width immediately
+                          const img = imageRefs.current[globalIndex];
+                          if (img && img.offsetWidth > 0) {
+                            setImageWidths(prev => ({
+                              ...prev,
+                              [globalIndex]: img.offsetWidth
+                            }));
+                          }
+                          
+                          // Trigger height recalculation and width measurement
                           setTimeout(() => {
                             const updateHeights = () => {
                               const heights: { [rowIndex: number]: number } = {};
@@ -393,6 +523,24 @@ export function ImageStack({
                                 
                                 setRowWidths(widths);
                               }
+                              
+                              // Measure actual rendered image widths for captions
+                              const measureWidths = () => {
+                                const measuredWidths: { [imageIndex: number]: number } = {};
+                                imageRefs.current.forEach((img, idx) => {
+                                  if (img && img.offsetWidth > 0) {
+                                    measuredWidths[idx] = img.offsetWidth;
+                                  }
+                                });
+                                if (Object.keys(measuredWidths).length > 0) {
+                                  setImageWidths(prev => {
+                                    const updated = { ...prev, ...measuredWidths };
+                                    return updated;
+                                  });
+                                }
+                              };
+                              // Measure after a short delay to ensure images are fully rendered
+                              setTimeout(measureWidths, 200);
                             };
                             updateHeights();
                           }, 100);
@@ -401,6 +549,34 @@ export function ImageStack({
                     </div>
                   ) : (
                     <div
+                      ref={(el) => {
+                        // Store container ref for width measurement
+                        if (el) {
+                          // Measure container width after image loads
+                          const img = imageRefs.current[globalIndex];
+                          if (img) {
+                            img.onload = () => {
+                              if (el.offsetWidth > 0) {
+                                setImageWidths(prev => ({
+                                  ...prev,
+                                  [globalIndex]: el.offsetWidth
+                                }));
+                              }
+                            };
+                            // If image already loaded, measure immediately
+                            if (img.complete && img.naturalHeight > 0) {
+                              setTimeout(() => {
+                                if (el.offsetWidth > 0) {
+                                  setImageWidths(prev => ({
+                                    ...prev,
+                                    [globalIndex]: el.offsetWidth
+                                  }));
+                                }
+                              }, 50);
+                            }
+                          }
+                        }
+                      }}
                       className={`${aspectRatio === 'landscape' ? 'aspect-[16/9]' : aspectRatio === 'portrait' ? 'aspect-[3/4]' : 'aspect-square'} rounded-2xl overflow-hidden shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]`}
                       style={hasFixedHeight ? {
                         height: `${scaledHeight || targetHeight}px`,
@@ -415,12 +591,51 @@ export function ImageStack({
                       <img
                         ref={(el) => {
                           imageRefs.current[globalIndex] = el;
+                          // Measure width when image loads
+                          if (el) {
+                            el.onload = () => {
+                              const container = el.parentElement;
+                              if (container && container.offsetWidth > 0) {
+                                setImageWidths(prev => ({
+                                  ...prev,
+                                  [globalIndex]: container.offsetWidth
+                                }));
+                              }
+                            };
+                            // If already loaded, measure immediately
+                            if (el.complete && el.naturalHeight > 0) {
+                              setTimeout(() => {
+                                const container = el.parentElement;
+                                if (container && container.offsetWidth > 0) {
+                                  setImageWidths(prev => ({
+                                    ...prev,
+                                    [globalIndex]: container.offsetWidth
+                                  }));
+                                }
+                              }, 50);
+                            }
+                          }
                         }}
                         src={image.src || image.imageUrl || ''}
                         alt={image.alt || ''}
                         className="w-full h-full object-cover"
                       />
                     </div>
+                  )}
+                  
+                  {/* Caption below image, constrained to image width */}
+                  {caption && (
+                    <p 
+                      className="text-lg text-gray-600 leading-relaxed mt-2"
+                      style={{
+                        maxWidth: imageWidth && imageWidth > 0 ? `${imageWidth}px` : '100%',
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word',
+                        boxSizing: 'border-box'
+                      }}
+                    >
+                      {caption}
+                    </p>
                   )}
                 </motion.div>
               );

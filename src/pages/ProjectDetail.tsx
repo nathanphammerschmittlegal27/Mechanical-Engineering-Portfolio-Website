@@ -54,24 +54,28 @@ export function ProjectDetail() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <p className="text-xl text-gray-600 leading-relaxed max-w-4xl">
-                  {project.detailDescription.split(/(nexusfootwear\.com)/).map((part, index) => {
-                    if (part === 'nexusfootwear.com') {
-                      return (
-                        <a
-                          key={index}
-                          href="https://nexusfootwear.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-semibold text-gray-800 hover:text-gray-900"
-                        >
-                          {part}
-                        </a>
-                      );
-                    }
-                    return part;
-                  })}
-                </p>
+                <div className="text-lg text-gray-600 leading-relaxed max-w-4xl">
+                  {project.detailDescription.split(/\n\n/).map((paragraph, pIndex) => (
+                    <p key={pIndex} className={pIndex > 0 ? 'mt-4' : ''}>
+                      {paragraph.split(/(nexusfootwear\.com)/).map((part, index) => {
+                        if (part === 'nexusfootwear.com') {
+                          return (
+                            <a
+                              key={index}
+                              href="https://nexusfootwear.com"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-gray-800 hover:text-gray-900"
+                            >
+                              {part}
+                            </a>
+                          );
+                        }
+                        return part;
+                      })}
+                    </p>
+                  ))}
+                </div>
               </motion.div>
             )}
           </motion.div>
@@ -82,8 +86,489 @@ export function ProjectDetail() {
           <section className="max-w-7xl mx-auto px-6 mb-24">
             <div className="max-w-4xl mx-auto">
               <div className="flex flex-col" style={{ gap: '16px' }}>
-                {/* Special handling for Truss Bridge - first two images on same row */}
-                {project.title === 'Truss Bridge' && project.detailImages.length >= 2 ? (
+                {/* Special handling for Dino Robot Walker */}
+                {project.title === 'Dino Robot Walker' && project.detailImages.length >= 2 ? (
+                  <>
+                    {/* First two drawings side by side with caption */}
+                    {project.detailImages.length >= 2 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={project.detailImages.slice(0, 2).map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          imagesByRow={[[project.detailImages[0], project.detailImages[1]]]}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={450}
+                          captions={['Final SolidWorks assembly drawing', 'Final SolidWorks assembly drawing']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* GIF with caption */}
+                    {project.detailImages.length >= 3 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[2]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={450}
+                          captions={['Final Build']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Solidworks isometric image with caption */}
+                    {project.detailImages.length >= 4 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[3]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: 'full',
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={450}
+                          captions={['Final SolidWorks assembly']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Last two images on same row */}
+                    {project.detailImages.length >= 6 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={project.detailImages.slice(4, 6).map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          imagesByRow={[[project.detailImages[4], project.detailImages[5]]]}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={450}
+                        />
+                      </div>
+                    )}
+                  </>
+                ) : project.title === '3D Printed Footwear' && project.detailImages.length >= 2 ? (
+                  <>
+                    {/* Website image */}
+                    {project.detailImages.length >= 1 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[0]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={575}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* GIF */}
+                    {project.detailImages.length >= 2 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[1]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={550}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Blender Models subtitle */}
+                    {project.detailImages.length >= 3 && (
+                      <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Blender Models</h3>
+                    )}
+                    
+                    {/* Blender images (indices 2-7) */}
+                    {project.detailImages.length >= 8 && (
+                      <div className="mt-4">
+                        <ImageStack 
+                          images={project.detailImages.slice(2, 8).map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={550}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Prototype Pairs subtitle - before nexus-isometric (index 8) */}
+                    {project.detailImages.length >= 8 && (
+                      <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Prototype Pairs</h3>
+                    )}
+                    
+                    {/* Isometric images - nexus-isometric, nexus-profile, nexus-overhead (indices 8-10) */}
+                    {project.detailImages.length >= 11 && (
+                      <div className="mt-4">
+                        <ImageStack 
+                          images={project.detailImages.slice(8, 11).map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={550}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Slicer Tuning and Optimization subtitle - before cross section (index 11) */}
+                    {project.detailImages.length >= 12 && (
+                      <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Slicer Tuning and Optimization</h3>
+                    )}
+                    
+                    {/* Cross section image with caption (index 11) */}
+                    {project.detailImages.length >= 12 && (
+                      <>
+                        <div className="mt-4">
+                          <ImageStack 
+                            images={[project.detailImages[11]].map(img => ({
+                              imageUrl: img.imageUrl,
+                              size: img.size,
+                              aspectRatio: img.aspectRatio
+                            }))}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={550}
+                          />
+                        </div>
+                        <p className="text-lg text-gray-600 leading-relaxed mt-2">Targeted infill zones</p>
+                      </>
+                    )}
+                    
+                    {/* Slicer images - last two on same row (indices 12-13) */}
+                    {project.detailImages.length >= 14 && (() => {
+                      const slicerImages = project.detailImages.slice(12, 14).map(img => ({
+                        imageUrl: img.imageUrl,
+                        size: img.size,
+                        aspectRatio: img.aspectRatio
+                      }));
+                      
+                      // Last two images should be on same row
+                      if (slicerImages.length >= 2) {
+                        const imagesByRow = [
+                          [slicerImages[0], slicerImages[1]] // Last two images on same row
+                        ];
+                        
+                        return (
+                          <>
+                            <div className="mt-8">
+                              <ImageStack 
+                                images={slicerImages}
+                                imagesByRow={imagesByRow}
+                                gap={32}
+                                rowGap={32}
+                                maxRowHeight={550}
+                              />
+                            </div>
+                            <p className="text-lg text-gray-600 leading-relaxed mt-2">Reducing travel movements</p>
+                          </>
+                        );
+                      }
+                      
+                      return (
+                        <div className="mt-8">
+                          <ImageStack 
+                            images={slicerImages}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={550}
+                          />
+                        </div>
+                      );
+                    })()}
+                  </>
+                ) : project.title === 'Running Biomechanics' && project.detailImages.length >= 2 ? (
+                  <>
+                    {/* First image with caption */}
+                    {project.detailImages.length >= 1 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[0]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['IMU data processing pipeline']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* GIF with caption */}
+                    {project.detailImages.length >= 3 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[2]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['Participating as a subject in a critical power study']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Angular velocity graphs */}
+                    {project.detailImages.length >= 3 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[1], project.detailImages[3]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          imagesByRow={[[project.detailImages[1], project.detailImages[3]]]}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Stride Segmentation subtitle */}
+                    {project.detailImages.length >= 5 && (
+                      <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Stride Segmentation from Filtered IMU Data</h3>
+                    )}
+                    
+                    {/* Manual peak correction and index application */}
+                    {project.detailImages.length >= 5 && (
+                      <div className="mt-4">
+                        <ImageStack 
+                          images={[project.detailImages[6], project.detailImages[4]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          imagesByRow={[[project.detailImages[6], project.detailImages[4]]]}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['Manual index correction for stride irregularities', 'Manual index correction for stride irregularities']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Zoomed index application */}
+                    {project.detailImages.length >= 5 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[5]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Stride Durations subtitle */}
+                    {project.detailImages.length >= 9 && (
+                      <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Stride Durations</h3>
+                    )}
+                    
+                    {/* Duration graphs */}
+                    {project.detailImages.length >= 9 && (
+                      <div className="mt-4">
+                        <ImageStack 
+                          images={[project.detailImages[9], project.detailImages[13]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          imagesByRow={[[project.detailImages[9], project.detailImages[13]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))]}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['Durations in grass running trial', 'Durations in woods running trial']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Duration stats */}
+                    {project.detailImages.length >= 10 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[10]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['Stats from grass running trial']}
+                        />
+                      </div>
+                    )}
+                    
+                    {project.detailImages.length >= 14 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[14]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['Stats from woods running trial']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Stride Variability subtitle */}
+                    {project.detailImages.length >= 11 && (
+                      <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Stride Variability</h3>
+                    )}
+                    
+                    {/* Repeatability graph */}
+                    {project.detailImages.length >= 11 && (
+                      <div className="mt-4">
+                        <ImageStack 
+                          images={[project.detailImages[11]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Repeatability stats */}
+                    {project.detailImages.length >= 12 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[12]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['Stride duration variability, or repeatability, stats']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Stride Symmetry subtitle */}
+                    {project.detailImages.length >= 7 && (
+                      <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Stride Symmetry</h3>
+                    )}
+                    
+                    {/* Symmetry graph */}
+                    {project.detailImages.length >= 7 && (
+                      <div className="mt-4">
+                        <ImageStack 
+                          images={[project.detailImages[7]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['Symmetry stats derived from left and right difference']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Symmetry stats */}
+                    {project.detailImages.length >= 8 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[8]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Site map */}
+                    {project.detailImages.length >= 15 && (
+                      <div className="mt-8">
+                        <ImageStack 
+                          images={[project.detailImages[15]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['Woods and grass trial site']}
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Puma Innovation subtitle */}
+                    {project.detailImages.length >= 16 && (
+                      <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Puma Innovation</h3>
+                    )}
+                    
+                    {/* Puma images */}
+                    {project.detailImages.length >= 17 && (
+                      <div className="mt-4">
+                        <ImageStack 
+                          images={[project.detailImages[17], project.detailImages[16]].map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))}
+                          imagesByRow={[[project.detailImages[17], project.detailImages[16]]]}
+                          gap={32}
+                          rowGap={32}
+                          maxRowHeight={400}
+                          captions={['I tested an upcoming PUMA stability shoe in the UMILL Lab (derived peak eversion velocity), and visited the innovation center in Somerville, MA.', '']}
+                        />
+                      </div>
+                    )}
+                  </>
+                ) : project.title === 'Truss Bridge' && project.detailImages.length >= 2 ? (
                   <>
                     {/* First two images on same row */}
                     {project.detailImages.length >= 2 && (
@@ -94,9 +579,15 @@ export function ProjectDetail() {
                             size: img.size,
                             aspectRatio: img.aspectRatio
                           }))}
+                          imagesByRow={[project.detailImages.slice(0, 2).map(img => ({
+                            imageUrl: img.imageUrl,
+                            size: img.size,
+                            aspectRatio: img.aspectRatio
+                          }))]}
                           gap={32}
                           rowGap={32}
                           maxRowHeight={400}
+                          captions={['Initial refined design sketch', 'Chosen SAP2000 variant after testing different heights']}
                         />
                       </div>
                     )}
@@ -130,15 +621,85 @@ export function ProjectDetail() {
                         ].filter(row => row.length > 0 && row.every(img => img !== undefined));
                         
                         return (
-                          <div className="mt-8">
-                            <ImageStack 
-                              images={remainingImages}
-                              imagesByRow={imagesByRow}
-                              gap={32}
-                              rowGap={32}
-                              maxRowHeight={550}
-                            />
-                          </div>
+                          <>
+                            {/* GIF caption */}
+                            <div className="mt-8">
+                              <ImageStack 
+                                images={[remainingImages[0]]}
+                                imagesByRow={[[remainingImages[0]]]}
+                                gap={32}
+                                rowGap={32}
+                                maxRowHeight={550}
+                                captions={['Instron compression testing set-up']}
+                              />
+                            </div>
+                            
+                            {/* Version 1 subtitle */}
+                            <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Version 1</h3>
+                            
+                            {/* V1 images */}
+                            <div className="mt-4">
+                              <ImageStack 
+                                images={[remainingImages[1], remainingImages[2]]}
+                                imagesByRow={[[remainingImages[1], remainingImages[2]]]}
+                                gap={32}
+                                rowGap={32}
+                                maxRowHeight={550}
+                                captions={['Initial SolidWorks Assembly (V1)', 'V1 Stress and Deflection FEA']}
+                              />
+                            </div>
+                            
+                            {/* Version 2 subtitle */}
+                            <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Version 2</h3>
+                            
+                            {/* V2 isometric */}
+                            <div className="mt-4">
+                              <ImageStack 
+                                images={[remainingImages[3]]}
+                                imagesByRow={[[remainingImages[3]]]}
+                                gap={32}
+                                rowGap={32}
+                                maxRowHeight={550}
+                                captions={['Final solidworks assembly (V2), added truss frame, pin and roller supports']}
+                              />
+                            </div>
+                            
+                            {/* V2 FEA images */}
+                            <div className="mt-8">
+                              <ImageStack 
+                                images={[remainingImages[4], remainingImages[5]]}
+                                imagesByRow={[[remainingImages[4], remainingImages[5]]]}
+                                gap={32}
+                                rowGap={32}
+                                maxRowHeight={550}
+                                captions={['Final V2 FEA', 'Predicted point of failure from stress concentration']}
+                              />
+                            </div>
+                            
+                            {/* V2 buckling */}
+                            <div className="mt-8">
+                              <ImageStack 
+                                images={[remainingImages[6]]}
+                                imagesByRow={[[remainingImages[6]]]}
+                                gap={32}
+                                rowGap={32}
+                                maxRowHeight={550}
+                                captions={['Buckling test—the bridge would not fail from buckling.']}
+                              />
+                            </div>
+                            
+                            {/* Failure image */}
+                            <div className="mt-8">
+                              <ImageStack 
+                                images={[remainingImages[7]]}
+                                imagesByRow={[[remainingImages[7]]]}
+                                gap={32}
+                                rowGap={32}
+                                maxRowHeight={550}
+                                captions={['Point of failure, as predicted, in the undertruss']}
+                              />
+                            </div>
+                          </>
                         );
                       }
                       
@@ -146,62 +707,6 @@ export function ProjectDetail() {
                         <div className="mt-8">
                           <ImageStack 
                             images={remainingImages}
-                            gap={32}
-                            rowGap={32}
-                            maxRowHeight={400}
-                          />
-                        </div>
-                      );
-                    })()}
-                  </>
-                ) : project.title === 'Running Biomechanics' && project.detailImages.length >= 2 ? (
-                  <>
-                    {/* First image only */}
-                    {project.detailImages.length >= 1 && (
-                      <div className="mt-8">
-                        <ImageStack 
-                          images={[project.detailImages[0]].map(img => ({
-                            imageUrl: img.imageUrl,
-                            size: img.size,
-                            aspectRatio: img.aspectRatio
-                          }))}
-                          gap={32}
-                          rowGap={32}
-                          maxRowHeight={400}
-                        />
-                      </div>
-                    )}
-                    
-                    {/* All remaining images with special row groupings */}
-                    {project.detailImages.length > 1 && (() => {
-                      const remainingImages = project.detailImages.slice(1).map(img => ({
-                        imageUrl: img.imageUrl,
-                        size: img.size,
-                        aspectRatio: img.aspectRatio
-                      }));
-                      
-                      // remainingImages: [0]=angular-velocity-matched, [1]=GIF, [2]=angular-velocity-flipped, [3]=index-application, [4]=zoomed-index-application, [5]=manual-peak-correction, [6]=grass-symmetry-graph, [7]=grass-symmetry-stats, [8]=grass-duration-graph, [9]=grass-duration-stats, [10]=grass-repeatability-graph, [11]=grass-repeatability-stats, [12]=woods-duration-graph, [13]=woods-duration-stats, [14]=trail-pilot-gps-map, [15]=umill-puma-materials, [16]=umill-puma-treadmill
-                      const imagesByRow = [
-                        [remainingImages[1]], // GIF (full width)
-                        [remainingImages[0], remainingImages[2]], // angular-velocity-matched and angular-velocity-flipped (after GIF)
-                        [remainingImages[5], remainingImages[3]], // manual-peak-correction and index-application
-                        [remainingImages[4]], // zoomed-index-application on its own row
-                        [remainingImages[8], remainingImages[12]], // grass-duration-graph and woods-duration-graph
-                        [remainingImages[9]], // grass-duration-stats on its own row
-                        [remainingImages[13]], // woods-duration-stats on its own row
-                        [remainingImages[10]], // grass-repeatability-graph on its own row
-                        [remainingImages[11]], // grass-repeatability-stats on its own row
-                        [remainingImages[6]], // grass-symmetry-graph on its own row
-                        [remainingImages[7]], // grass-symmetry-stats on its own row
-                        [remainingImages[14]], // trail-pilot-gps on its own row
-                        [remainingImages[16], remainingImages[15]] // umill-puma-treadmill and umill-puma-materials on same row
-                      ].filter(row => row.length > 0 && row.every(img => img !== undefined));
-                      
-                      return (
-                        <div className="mt-8">
-                          <ImageStack 
-                            images={remainingImages}
-                            imagesByRow={imagesByRow}
                             gap={32}
                             rowGap={32}
                             maxRowHeight={400}
@@ -332,15 +837,94 @@ export function ProjectDetail() {
                             rowGap={32}
                             maxRowHeight={400}
                           />
-                          {/* Remaining images after description */}
+                          {/* Remaining images after description with captions */}
                           {remainingImages.length > 0 && (
-                            <ImageStack 
-                              images={remainingImages}
-                              imagesByRow={remainingImagesByRow}
-                              gap={32}
-                              rowGap={32}
-                              maxRowHeight={400}
-                            />
+                            <>
+                              {/* Wood Microstructure Concept Iteration subtitle */}
+                              <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Wood Microstructure Concept Iteration</h3>
+                              
+                              {/* Wood pattern cardstock and cube */}
+                              <div className="mt-4">
+                                <ImageStack 
+                                  images={[woodCardstock, woodCube].filter(img => img !== undefined)}
+                                  imagesByRow={[[woodCardstock, woodCube].filter(img => img !== undefined)]}
+                                  gap={32}
+                                  rowGap={32}
+                                  maxRowHeight={400}
+                                />
+                              </div>
+                              
+                              {/* Panel and Joint Variants subtitle */}
+                              <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Panel and Joint Variants</h3>
+                              
+                              {/* Panel overhead images */}
+                              <div className="mt-4">
+                                <ImageStack 
+                                  images={[overheadPaper, overheadAcrylicPaper, overheadAcrylicVinyl].filter(img => img !== undefined)}
+                                  imagesByRow={[[overheadPaper, overheadAcrylicPaper, overheadAcrylicVinyl].filter(img => img !== undefined)]}
+                                  gap={32}
+                                  rowGap={32}
+                                  maxRowHeight={400}
+                                  captions={[
+                                    overheadPaper ? 'Laser-cut paper' : '',
+                                    overheadAcrylicPaper ? 'Acrylic and laser-etched cardstock' : '',
+                                    overheadAcrylicVinyl ? 'Vinyl and laser-etched acrylic' : ''
+                                  ].filter(caption => caption !== '')}
+                                />
+                              </div>
+                              
+                              {/* Joint images */}
+                              <div className="mt-8">
+                                <ImageStack 
+                                  images={[jointSolid, jointGyroid].filter(img => img !== undefined)}
+                                  imagesByRow={[[jointSolid, jointGyroid].filter(img => img !== undefined)]}
+                                  gap={32}
+                                  rowGap={32}
+                                  maxRowHeight={400}
+                                  captions={[
+                                    jointSolid ? 'Solid 3D-printed joint' : '',
+                                    jointGyroid ? 'Gyroid lattice 3D-printed joint' : ''
+                                  ].filter(caption => caption !== '')}
+                                />
+                              </div>
+                              
+                              {/* Panel front and panel */}
+                              <div className="mt-8">
+                                <ImageStack 
+                                  images={[panelFront, panel].filter(img => img !== undefined)}
+                                  imagesByRow={[[panelFront, panel].filter(img => img !== undefined)]}
+                                  gap={32}
+                                  rowGap={32}
+                                  maxRowHeight={400}
+                                  captions={[
+                                    panelFront ? 'Wood front panel' : '',
+                                    panel ? 'Wood side panel' : ''
+                                  ].filter(caption => caption !== '')}
+                                />
+                              </div>
+                              
+                              {/* Panel acrylic and acrylic close */}
+                              <div className="mt-8">
+                                <ImageStack 
+                                  images={[panelAcrylic, acrylicClose].filter(img => img !== undefined)}
+                                  imagesByRow={[[panelAcrylic, acrylicClose].filter(img => img !== undefined)]}
+                                  gap={32}
+                                  rowGap={32}
+                                  maxRowHeight={400}
+                                />
+                              </div>
+                              
+                              {/* Side gyroid and corner close */}
+                              <div className="mt-8">
+                                <ImageStack 
+                                  images={[sideGyroid, cornerClose].filter(img => img !== undefined)}
+                                  imagesByRow={[[sideGyroid, cornerClose].filter(img => img !== undefined)]}
+                                  gap={32}
+                                  rowGap={32}
+                                  maxRowHeight={400}
+                                />
+                              </div>
+                            </>
                           )}
                         </>
                       );
@@ -404,18 +988,56 @@ export function ProjectDetail() {
                           <>
                             {/* First two images */}
                             {project.detailImages.length >= 2 && (
-                              <div className="mt-8">
-                                <ImageStack 
-                                  images={project.detailImages.slice(0, 2).map(img => ({
-                                    imageUrl: img.imageUrl,
-                                    size: img.size,
-                                    aspectRatio: img.aspectRatio
-                                  }))}
-                                  gap={32}
-                                  rowGap={32}
-                                  maxRowHeight={project.title === 'Dino Robot Walker' ? 450 : project.title === 'Design Sketching' ? 500 : project.title === 'Sculpture' ? 500 : 400}
-                                />
-                              </div>
+                              <>
+                                {/* Sketchbook Pages subtitle for Design Sketching */}
+                                {project.title === 'Design Sketching' && (
+                                  <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Sketchbook Pages</h3>
+                                )}
+                                {/* Objects subtitle for Drawing */}
+                                {project.title === 'Drawing' && (
+                                  <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Objects</h3>
+                                )}
+                                {project.title === 'AirPods Max Redesign' ? (
+                                  <div className="mt-8">
+                                    <ImageStack 
+                                      images={project.detailImages.slice(0, 2).map(img => ({
+                                        imageUrl: img.imageUrl,
+                                        size: img.size,
+                                        aspectRatio: img.aspectRatio
+                                      }))}
+                                      imagesByRow={[project.detailImages.slice(0, 2).map(img => ({
+                                        imageUrl: img.imageUrl,
+                                        size: img.size,
+                                        aspectRatio: img.aspectRatio
+                                      }))]}
+                                      gap={32}
+                                      rowGap={32}
+                                      maxRowHeight={400}
+                                      captions={['Average human head OBJ with headphone cushion profile', 'Cushion geometry generated from 3D path head path']}
+                                    />
+                                  </div>
+                                ) : (
+                                  <div className={project.title === 'Design Sketching' ? "mt-4" : "mt-8"}>
+                                    <ImageStack 
+                                      images={project.detailImages.slice(0, 2).map(img => ({
+                                        imageUrl: img.imageUrl,
+                                        size: img.size,
+                                        aspectRatio: img.aspectRatio
+                                      }))}
+                                      gap={32}
+                                      rowGap={32}
+                                      maxRowHeight={project.title === 'Dino Robot Walker' ? 450 : project.title === 'Design Sketching' ? 500 : project.title === 'Sculpture' ? 500 : 400}
+                                      captions={project.title === 'Microfluidics Research' ? ['Complex Fluids Lab', 'Droplet maker junction'] : undefined}
+                                    />
+                                  </div>
+                                )}
+                                {/* Caption for first image - Other CAD */}
+                                {project.title === 'Other CAD' && project.detailImages.length >= 1 && (
+                                  <div className="mt-2">
+                                    <p className="text-lg text-gray-600 leading-relaxed">SolidWorks part drawings</p>
+                                  </div>
+                                )}
+                              </>
                             )}
                             
                             {/* Remaining images */}
@@ -474,13 +1096,26 @@ export function ProjectDetail() {
                     return (
                       <>
                         <ImageStack 
-                          images={imagesBeforeStatues}
-                          imagesByRow={imagesBeforeStatuesByRow}
+                          images={imagesBeforeStatues.slice(0, 6)}
+                          imagesByRow={imagesBeforeStatuesByRow.slice(0, 3)}
                           gap={32}
                           rowGap={32}
                           maxRowHeight={400}
                         />
-                        <div className="mt-8 mb-8">
+                        {/* Landscapes subtitle */}
+                        <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Landscapes</h3>
+                        <div className="mt-4">
+                          <ImageStack 
+                            images={[remainingImages[6], remainingImages[7]]}
+                            imagesByRow={[[remainingImages[6], remainingImages[7]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={400}
+                          />
+                        </div>
+                        {/* People subtitle */}
+                        <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">People</h3>
+                        <div className="mt-4 mb-8">
                           <ImageStack 
                             images={[statuesImage]}
                             gap={32}
@@ -511,21 +1146,106 @@ export function ProjectDetail() {
                     );
                   }
                   
+                  // Special handling for Other CAD - add captions and subtitles
+                  // Note: first two images (geneva-wheel, pivot-arm) are shown above with caption for first image
+                  // remainingImages: [0]=spur-gears (detailImages[2]), [1]=bike-spacer (detailImages[3]), [2]=spool-rack (detailImages[4]), [3]=lattice-cubes (detailImages[5])
+                  // Arrange in rows: spur-gears on own row, then bike-spacer and spool-rack on same row, then lattice-cubes on own row
+                  if (project.title === 'Other CAD' && remainingImages.length >= 4) {
+                    return (
+                      <>
+                        {/* Fusion 360 subtitle */}
+                        <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Fusion 360</h3>
+                        
+                        {/* Spur gears and Bike spacer - on same row */}
+                        <div className="mt-4">
+                          <ImageStack 
+                            images={[remainingImages[0], remainingImages[1]]}
+                            imagesByRow={[[remainingImages[0], remainingImages[1]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={400}
+                            captions={['Spur gears', 'Cannondale road bike spacer']}
+                          />
+                        </div>
+                        
+                        {/* Spool rack and Lattice cubes - on same row */}
+                        <div className="mt-8">
+                          <ImageStack 
+                            images={[remainingImages[2], remainingImages[3]]}
+                            imagesByRow={[[remainingImages[2], remainingImages[3]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={400}
+                            captions={['Filament spool rack support', 'Test lattice cubes']}
+                          />
+                        </div>
+                      </>
+                    );
+                  }
+                  
                   // Special handling for Microfluidics Research - make poster larger after GIF
                   if (project.title === 'Microfluidics Research' && remainingImages.length >= 2) {
+                    // remainingImages: [0]=GIF, [1]=poster, [2]=alginate-overhead, [3]=vpdms-normal, [4]=vpdms-fluorescent, [5]=rheometer
                     // Poster is at index 1 (after GIF at index 0)
                     if (remainingImages[1]) {
                       remainingImages[1].size = 'full'; // Make poster larger
                     }
                     
-                    // Don't use imagesByRow - let it auto-wrap, but ensure poster is larger
+                    // Restore original auto-wrapping organization - render rows with aligned captions
                     return (
-                      <ImageStack 
-                        images={remainingImages}
-                        gap={32}
-                        rowGap={32}
-                        maxRowHeight={650}
-                      />
+                      <>
+                        {/* GIF row */}
+                        <div className="mt-8">
+                          <ImageStack 
+                            images={[remainingImages[0]]}
+                            imagesByRow={[[remainingImages[0]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={650}
+                          />
+                          <p className="text-lg text-gray-600 leading-relaxed mt-2">VPDMS droplet maker in action!</p>
+                        </div>
+                        
+                        {/* Poster row */}
+                        {remainingImages[1] && (
+                          <div className="mt-8">
+                            <ImageStack 
+                              images={[remainingImages[1]]}
+                              imagesByRow={[[remainingImages[1]]]}
+                              gap={32}
+                              rowGap={32}
+                              maxRowHeight={650}
+                            />
+          </div>
+                        )}
+                        
+                        {/* Remaining images in original auto-wrapping (typically 2 per row) */}
+                        {remainingImages.length > 2 && (
+                          <div className="mt-8">
+                            <ImageStack 
+                              images={remainingImages.slice(2)}
+                              gap={32}
+                              rowGap={32}
+                              maxRowHeight={650}
+                            />
+                            {/* Captions for remaining images - will align based on natural wrapping */}
+                            <div className="mt-4 space-y-2">
+                              {remainingImages[2]?.imageUrl?.includes('alginate-overhead') && (
+                                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl">Sodium alginate particles</p>
+                              )}
+                              {remainingImages[3]?.imageUrl?.includes('vpdms-normal') && (
+                                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl">VPDMS particles from emulsification procedure</p>
+                              )}
+                              {remainingImages[4]?.imageUrl?.includes('vpdms-fluorescent') && (
+                                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl">VPDMS emulsified with fluorescent dye</p>
+                              )}
+                              {remainingImages[5]?.imageUrl?.includes('rheometer') && (
+                                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl">Rheometer used to test modulus of alginate particles</p>
+                              )}
+              </div>
+            </div>
+                        )}
+                      </>
                     );
                   }
                   
@@ -534,22 +1254,70 @@ export function ProjectDetail() {
                     // After first two images (ideation and sketch), organize remaining images
                     // remainingImages: [0]=modular-sw1, [1]=modular-sw2, [2]=techpack1, [3]=techpack2, [4]=techpack3, [5]=techpack4, [6]=cupsole-isometric, [7]=cupsole-overhead, [8]=cupsole-printed, [9]=outsole-isometric, [10]=modular-bottom
                     
-                    const imagesByRow = [
-                      [remainingImages[0], remainingImages[1]], // modular-sw1 and modular-sw2 (on same row)
-                      [remainingImages[2], remainingImages[3]], // techpack1 and techpack2 (on same row)
-                      [remainingImages[4], remainingImages[5]], // techpack3 and techpack4 (on same row)
-                      [remainingImages[6], remainingImages[7], remainingImages[8]], // cupsole-isometric, cupsole-overhead, cupsole-printed (all on same row)
-                      [remainingImages[9], remainingImages[10]], // outsole-isometric and modular-bottom (last two, on same row)
-                    ];
-                    
                     return (
-                      <ImageStack 
-                        images={remainingImages}
-                        imagesByRow={imagesByRow}
-                        gap={32}
-                        rowGap={32}
-                        maxRowHeight={400}
-                      />
+                      <>
+                        {/* Prototype CAD subtitle */}
+                        <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Prototype CAD</h3>
+                        
+                        {/* Modular SW images */}
+                        <div className="mt-4">
+                          <ImageStack 
+                            images={[remainingImages[0], remainingImages[1]]}
+                            imagesByRow={[[remainingImages[0], remainingImages[1]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={400}
+                            captions={['Outsole with tapered locking dovetails', 'Slide and lock midsole with flexure points']}
+                          />
+                        </div>
+                        
+                        {/* Cupsole images */}
+                        <div className="mt-8">
+                          <ImageStack 
+                            images={[remainingImages[6], remainingImages[7], remainingImages[8]]}
+                            imagesByRow={[[remainingImages[6], remainingImages[7], remainingImages[8]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={400}
+                            captions={['Final cupsole', '', '']}
+                          />
+                        </div>
+                        
+                        {/* Outsole and modular bottom */}
+                        <div className="mt-8">
+                          <ImageStack 
+                            images={[remainingImages[9], remainingImages[10]]}
+                            imagesByRow={[[remainingImages[9], remainingImages[10]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={400}
+                            captions={['Final outsole', 'Wearable prototype build']}
+                          />
+                        </div>
+                        
+                        {/* Tech Pack subtitle */}
+                        <h3 className="text-2xl text-gray-900 font-semibold leading-relaxed max-w-4xl mt-8">Tech Pack</h3>
+                        
+                        {/* Techpack images */}
+                        <div className="mt-4">
+                          <ImageStack 
+                            images={[remainingImages[2], remainingImages[3]]}
+                            imagesByRow={[[remainingImages[2], remainingImages[3]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={400}
+                          />
+                        </div>
+                        <div className="mt-8">
+                          <ImageStack 
+                            images={[remainingImages[4], remainingImages[5]]}
+                            imagesByRow={[[remainingImages[4], remainingImages[5]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={400}
+                          />
+                        </div>
+                      </>
                     );
                   }
                   
@@ -568,15 +1336,29 @@ export function ProjectDetail() {
                     ];
                     
                     return (
-                      <div className="mt-8">
-                        <ImageStack 
-                          images={remainingImages}
-                          imagesByRow={imagesByRow}
-                          gap={32}
-                          rowGap={32}
-                          maxRowHeight={550}
-                        />
-                      </div>
+                      <>
+                        {/* Slides 1-3 (full width) */}
+                        <div className="mt-8">
+                          <ImageStack 
+                            images={[remainingImages[0], remainingImages[1], remainingImages[2]]}
+                            imagesByRow={[[remainingImages[0]], [remainingImages[1]], [remainingImages[2]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={550}
+                          />
+                        </div>
+                        {/* Last row - assembly-drawing and ear-closeup with captions */}
+                        <div className="mt-8">
+                          <ImageStack 
+                            images={[remainingImages[3], remainingImages[4]]}
+                            imagesByRow={[[remainingImages[3], remainingImages[4]]]}
+                            gap={32}
+                            rowGap={32}
+                            maxRowHeight={550}
+                            captions={['Final cushion and case assembly drawing', 'Cushion with and without 3 mm magnetic spacers']}
+                          />
+                        </div>
+                      </>
                     );
                   }
                   

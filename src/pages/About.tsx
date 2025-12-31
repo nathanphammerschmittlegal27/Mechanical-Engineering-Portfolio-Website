@@ -263,7 +263,7 @@ export function About() {
                 <img src="/images/about/resume-preview.png" alt="Resume Preview" className="w-full h-full object-contain" />
               </div>
               <div className="text-center">
-                <a href="/resume.pdf" download="NathanHLG_Resume.pdf" className="inline-block bg-gray-900 text-white font-medium px-8 py-3 rounded-xl hover:bg-black transition-colors">
+                <a href="/NathanHLG_Resume.pdf" download="NathanHLG_Resume.pdf" className="inline-block bg-gray-900 text-white font-medium px-8 py-3 rounded-xl hover:bg-black transition-colors">
                   Download
                 </a>
               </div>
