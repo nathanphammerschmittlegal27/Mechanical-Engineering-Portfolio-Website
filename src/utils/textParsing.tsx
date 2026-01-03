@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LINK_PATTERNS = /(David Macaulay|Giovanni Battista Piranesi|Stephen Bauman|fully custom-fit, 3D-printed shoes|Complex Fluids Lab|nexusfootwear\.com)/g;
+const LINK_PATTERNS = /(Integrated Locomotion Laboratory at the University of Massachusetts Amherst \(UMILL\)|David Macaulay|Giovanni Battista Piranesi|Stephen Bauman|fully custom-fit, 3D-printed shoes|Complex Fluids Lab|nexusfootwear\.com)/g;
 
 function getUrl(text: string): string | null {
   if (text === 'nexusfootwear.com' || text === 'fully custom-fit, 3D-printed shoes') {
@@ -8,6 +8,9 @@ function getUrl(text: string): string | null {
   }
   if (text === 'Complex Fluids Lab') {
     return 'https://hashmilab.sites.northeastern.edu/';
+  }
+  if (text === 'Integrated Locomotion Laboratory at the University of Massachusetts Amherst (UMILL)') {
+    return 'https://sites.google.com/umass.edu/umill';
   }
   if (text === 'David Macaulay') {
     return 'https://en.wikipedia.org/wiki/David_Macaulay';
