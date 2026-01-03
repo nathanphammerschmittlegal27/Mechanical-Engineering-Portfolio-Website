@@ -4,14 +4,6 @@ export interface Project {
   category: string | string[];
   description: string;
   imageUrl: string;
-  overview?: string;
-  challenge?: string;
-  solution?: string;
-  processImages?: string[];
-  specs?: {
-    label: string;
-    value: string;
-  }[];
   detailDescription?: string;
   detailImages?: {
     imageUrl: string;
@@ -25,23 +17,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: 'Mechanical',
   description: 'March - May 2025',
   imageUrl: '/images/projects/Dino Robot Walker/dino-cover.webp',
-  overview: 'Designed a next-generation drone frame using advanced generative design algorithms and carbon fiber composite materials. The project focused on maximizing flight time while maintaining structural integrity under various payload conditions.',
-  challenge: 'Traditional drone frames struggle with the balance between weight reduction and structural strength, especially when carrying heavy sensor payloads for extended periods.',
-  solution: 'Implemented topology optimization in Fusion 360 to create an organic, lightweight structure. Used carbon fiber layup techniques to achieve a 40% weight reduction compared to aluminum alternatives while maintaining equivalent strength.',
-  processImages: ['/images/dino-robot-walker-process-1.jpg', '/images/dino-robot-walker-process-2.jpg', '/images/dino-robot-walker-process-3.jpg'],
-  specs: [{
-    label: 'Weight',
-    value: '850g'
-  }, {
-    label: 'Material',
-    value: 'Carbon Fiber'
-  }, {
-    label: 'Flight Time',
-    value: '45 min'
-  }, {
-    label: 'Payload Capacity',
-    value: '2.5 kg'
-  }],
   detailDescription: 'I designed and built a bipedal "Dino" walking robot for a kinematics and computer-aided design course, focusing on mechanically efficient gait generation using a rotational four-bar linkage. The linkage converts continuous rotational input into a controlled translational foot path, enabling stable forward motion without active leg control.\n\nI modeled and optimized the linkage geometry in GeoGebra to level the coupler foot trajectory relative to the robot body, then translated the design into a full SolidWorks assembly. The final system integrates 3D-printed and laser-cut structural components, servos, fasteners, and a radio receiver.\n\nThis project required a focus on tolerances, alignment, and repeatable assembly to ensure smooth, reliable motion.',
   detailImages: [{
     imageUrl: '/images/projects/Dino Robot Walker/dino-drawing1.webp',
@@ -72,23 +47,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: ['Mechanical', 'Industrial Design'],
   description: 'February 2025 - Present',
   imageUrl: '/images/projects/3D Printed Footwear /nexus-cover.webp',
-  overview: 'Developed a precision hydraulic actuator system for industrial robotic arms requiring high force output with minimal position error. The system integrates servo valves with closed-loop feedback for sub-millimeter accuracy.',
-  challenge: 'Existing hydraulic systems lacked the precision needed for modern manufacturing tasks, with position errors exceeding 5mm under full load conditions.',
-  solution: 'Designed a custom servo valve assembly with integrated position sensors and implemented a PID control algorithm. Achieved position accuracy of ±0.5mm even under maximum load conditions.',
-  processImages: ['/images/3d-printed-footwear-process-1.jpg', '/images/3d-printed-footwear-process-2.jpg', '/images/3d-printed-footwear-process-3.jpg'],
-  specs: [{
-    label: 'Max Force',
-    value: '50 kN'
-  }, {
-    label: 'Accuracy',
-    value: '±0.5 mm'
-  }, {
-    label: 'Response Time',
-    value: '50 ms'
-  }, {
-    label: 'Operating Pressure',
-    value: '250 bar'
-  }],
   detailDescription: 'I have been developing 3D-printed footwear as an ongoing engineering and entrepreneurship project, using FDM printing to rethink how everyday shoes are designed and manufactured. Traditional footwear relies on dozens of stitched and glued components, overseas production, large inventory commitments, and a carbon-intensive supply chain. In contrast, additive manufacturing enables on-demand, domestic production with minimal waste and radically simplified assembly.\n\nThis project has scaled into a startup, NEXUS Footwear, which I co-founded with two other Dartmouth students. I lead the mechanical design and manufacturing effort, iterating through 50+ printed prototypes, maintaining a small print farm, and refining geometry and print parameters to improve comfort, durability, and fit for users with foot abnormalities. The goal is to commercialize custom-fit, 3D-printed shoes designed for everyday wear.\n\nCheck it out at nexusfootwear.com.',
   detailImages: [{
     imageUrl: '/images/projects/3D Printed Footwear /nexus-website.webp',
@@ -148,24 +106,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: 'Programming',
   description: 'June - August 2024',
   imageUrl: '/images/projects/Running Biomechanics /biomechanics-cover.webp',
-  overview: 'Engineered an advanced liquid cooling system for electric vehicle battery packs to maintain optimal operating temperatures and extend battery life. The design prioritizes uniform temperature distribution across all cells.',
-  challenge: 'High-density battery packs generate significant heat during charging and discharge cycles, leading to thermal gradients that reduce performance and lifespan.',
-  solution: 'Created a serpentine cooling channel design with optimized flow rates using CFD analysis. Integrated with smart thermal management software to dynamically adjust cooling based on real-time cell temperatures.',
-  processImages: ['/images/running-biomechanics-process-1.jpg', '/images/running-biomechanics-process-2.jpg', '/images/running-biomechanics-process-3.jpg'],
-  specs: [{
-    label: 'Cooling Capacity',
-    value: '5 kW'
-  }, {
-    label: 'Temp Uniformity',
-    value: '±2°C'
-  }, {
-    label: 'Weight',
-    value: '12 kg'
-  }, {
-    label: 'Efficiency Gain',
-    value: '15%'
-  }],
-  detailDescription: 'I worked as a research assistant in the Integrated Locomotion Laboratory at the University of Massachusetts Amherst (UMILL), where I independently led a project focused on extracting biomechanically meaningful metrics from Inertial Measurement Units (IMUs) during outdoor trail running. Rather than relying on error-prone stride length reconstruction, I developed and validated an IMU processing pipeline centered on angular-velocity–based metrics such as stride symmetry, repeatability, and peak and average joint angular velocities.\n\nThis work involved designing robust stride segmentation methods using acceleration and jerk signals, implementing Dynamic Time Warping to compare strides across legs and conditions, and building reusable analysis scripts to support future studies on terrain, footwear, and lighting effects in trail running. I also assisted graduate students with data collection, signal processing, and visualization across multiple biomechanics projects in the lab.',
+  detailDescription: 'I worked as a research assistant in the Integrated Locomotion Laboratory at the University of Massachusetts Amherst (UMILL), where I independently led a project focused on extracting biomechanically meaningful metrics from Inertial Measurement Units (IMUs) during outdoor trail running. Rather than relying on error-prone stride length reconstruction, I developed and validated an IMU processing pipeline centered on angular-velocity–based metrics such as stride symmetry, repeatability, and peak and average joint angular velocities.\n\nThis work involved designing stride segmentation methods using acceleration and jerk signals, implementing Dynamic Time Warping to compare strides across legs and conditions, and building reusable analysis scripts to support future studies on terrain, footwear, and lighting effects in trail running. I also assisted graduate students with data collection, signal processing, and visualization across multiple biomechanics projects in the lab.',
   detailImages: [{
     imageUrl: '/images/projects/Running Biomechanics /imu-analysis-timeline.webp',
     aspectRatio: 'auto'
@@ -228,23 +169,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: ['Mechanical', 'Industrial Design'],
   description: 'November 2025',
   imageUrl: '/images/projects/Airpods Max Redesign/apm-cover.webp',
-  overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
-  challenge: 'Describe the challenge or problem your project addresses.',
-  solution: 'Explain your solution and how it addresses the challenge.',
-  processImages: ['/images/airpods-max-redesign-process-1.jpg', '/images/airpods-max-redesign-process-2.jpg', '/images/airpods-max-redesign-process-3.jpg'],
-  specs: [{
-    label: 'Spec 1',
-    value: 'Value 1'
-  }, {
-    label: 'Spec 2',
-    value: 'Value 2'
-  }, {
-    label: 'Spec 3',
-    value: 'Value 3'
-  }, {
-    label: 'Spec 4',
-    value: 'Value 4'
-  }],
   detailDescription: 'I redesigned the ear cup and cushion system of the AirPods Max to improve long-duration comfort and fit consistency across a wide range of users. Through ergonomic research, I identified limitations in the existing design, including symmetric ear cushions that create uneven pressure distribution and a fixed clamping force that does not accommodate variation in head and ear geometry.\n\nThe redesign introduces a form-fitting, asymmetric cushion geometry matched to a 3D head model to improve pressure distribution while maintaining acoustic sealing. I also developed a modular spacer system that allows users to tune ear clearance and clamping force within a controlled range, improving comfort without altering the headband or hinge. All components were modeled and assembled in Fusion 360, with geometry development informed by Blender-based curve extraction and validated through and free-body analysis.\n\nThis project required a combination of ergonomic research, CAD and surfacing, mechanical design, tolerance analysis, and systems-level thinking to improve comfort while working within strict hardware constraints.',
   detailImages: [{
     imageUrl: '/images/projects/Airpods Max Redesign/apm-head-isometric.webp',
@@ -281,24 +205,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: 'Mechanical',
   description: 'March - May 2025',
   imageUrl: '/images/projects/Truss Bridge /truss-cover.webp',
-  overview: 'Created a collaborative robotic arm with integrated computer vision for adaptive manufacturing tasks. The system can identify parts, adjust grip force, and perform quality inspection in real-time.',
-  challenge: 'Traditional industrial robots require extensive programming for each task and cannot adapt to variations in part placement or quality, leading to production delays.',
-  solution: 'Integrated a vision system with machine learning-based object recognition and force-sensitive grippers. The arm can autonomously adjust to part variations and detect defects with 99.2% accuracy.',
-  processImages: ['/images/truss-bridge-process-1.jpg', '/images/truss-bridge-process-2.jpg', '/images/truss-bridge-process-3.jpg'],
-  specs: [{
-    label: 'Reach',
-    value: '850 mm'
-  }, {
-    label: 'Payload',
-    value: '5 kg'
-  }, {
-    label: 'Repeatability',
-    value: '±0.05 mm'
-  }, {
-    label: 'Vision Resolution',
-    value: '12 MP'
-  }],
-  detailDescription: 'I worked as part of a three-person team in the design and fabrication of a lightweight plywood truss bridge for a solid mechanics course, with the goal of maximizing strength-to-weight ratio under compressive loading. Using SolidWorks FEA and SAP2000, we iteratively optimized member geometry, truss height, and load paths to shift stresses into the outer truss, reinforce high-stress regions, and remove material from minimally loaded members. The final bridge weighed 0.843 kg and featured a dual upper–lower truss system designed to distribute deck loads efficiently.\n\nDuring Instron testing, the bridge carried 20.8 kN (4,500+ lb), exceeding our 16 kN FEA prediction and achieving a load-to-weight ratio of ~24.7. Post-failure analysis showed that collapse occurred via shear failure of vertical cross-member tenons at the deck interface, rather than global buckling or member fracture. This discrepancy highlighted the importance of joint design, glue reinforcement, and fabrication tolerances, and informed proposed design iterations to improve load transfer and reduce shear concentrations at deck connections.',
+  detailDescription: 'I worked as part of a three-person team in the design and fabrication of a lightweight plywood truss bridge for a solid mechanics course, ENGS 033, with the goal of maximizing strength-to-weight ratio under compressive loading. Using SolidWorks FEA and SAP2000, we iteratively optimized member geometry, truss height, and load paths to shift stresses into the outer truss, reinforce high-stress regions, and remove material from minimally loaded members. The final bridge weighed 0.843 kg and featured a dual upper–lower truss system designed to distribute deck loads efficiently.\n\nDuring Instron testing, the bridge carried 20.8 kN (4,500+ lb), exceeding our 16 kN FEA prediction and achieving a load-to-weight ratio of ~24.7. Post-failure analysis showed that collapse occurred via shear failure of vertical cross-member tenons at the deck interface, rather than global buckling or member fracture. This discrepancy highlighted the importance of joint design, glue reinforcement, and fabrication tolerances, and informed proposed design iterations to improve load transfer and reduce shear concentrations at deck connections.',
   detailImages: [{
     imageUrl: '/images/projects/Truss Bridge /truss-sketch.webp',
     aspectRatio: 'auto'
@@ -337,23 +244,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: ['Mechanical', 'Industrial Design'],
   description: 'September 2022 - Present',
   imageUrl: '/images/projects/Other CAD/other-cad-cover.webp',
-  overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
-  challenge: 'Describe the challenge or problem your project addresses.',
-  solution: 'Explain your solution and how it addresses the challenge.',
-  processImages: ['/images/other-cad-process-1.jpg', '/images/other-cad-process-2.jpg', '/images/other-cad-process-3.jpg'],
-  specs: [{
-    label: 'Spec 1',
-    value: 'Value 1'
-  }, {
-    label: 'Spec 2',
-    value: 'Value 2'
-  }, {
-    label: 'Spec 3',
-    value: 'Value 3'
-  }, {
-    label: 'Spec 4',
-    value: 'Value 4'
-  }],
   detailDescription: 'I know how to model in SolidWorks (CSWA), Fusion 360, and Blender. These are some miscellaneous models that don\'t fit in with any particular project.',
   detailImages: [{
     imageUrl: '/images/projects/Other CAD/geneva-wheel-drawing.webp',
@@ -380,23 +270,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: 'Mechanical',
   description: 'July - August 2022',
   imageUrl: '/images/projects/Microfluidics Research /microfluidics-cover.webp',
-  overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
-  challenge: 'Describe the challenge or problem your project addresses.',
-  solution: 'Explain your solution and how it addresses the challenge.',
-  processImages: ['/images/project-7-process-1.jpg', '/images/project-7-process-2.jpg', '/images/project-7-process-3.jpg'],
-  specs: [{
-    label: 'Spec 1',
-    value: 'Value 1'
-  }, {
-    label: 'Spec 2',
-    value: 'Value 2'
-  }, {
-    label: 'Spec 3',
-    value: 'Value 3'
-  }, {
-    label: 'Spec 4',
-    value: 'Value 4'
-  }],
   detailDescription: 'I conducted summer research through the Northeastern University Young Scholars Program, working in the Complex Fluids Lab to study the synthesis of micro- and macro-scale particles using microfluidic and bulk fluidic techniques. The goal of the project was to produce microparticles with controllable size and mechanical properties for applications such as drug delivery and modeling particle flow in biological systems.\n\nI synthesized sodium alginate particles using syringe dropwise methods and microfluidic droplet makers, and produced vinyterminated PDMS (vPDMS) microparticles through controlled emulsion and sonication processes. I varied chemical concentrations, crosslinking conditions, and sonication time to study their effects on particle size, polydispersity, and stiffness. Particle characterization was performed using microscopy, Dynamic Light Scattering (DLS), and mechanical testing using a rheometer.\n\nThis project required a combination of experimental lab work, microfluidic device operation, materials processing, data analysis, and scientific communication, and introduced me to research at the intersection of fluid mechanics, materials science, and biomedical engineering.',
   detailImages: [{
     imageUrl: '/images/projects/Microfluidics Research /complex-fluids-logo.webp',
@@ -431,24 +304,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: 'Mechanical',
   description: 'February - September 2025',
   imageUrl: '/images/projects/Modular Running Shoe/modular-cover.png',
-  overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
-  challenge: 'Describe the challenge or problem your project addresses.',
-  solution: 'Explain your solution and how it addresses the challenge.',
-  processImages: ['/images/modular-running-shoe-process-1.jpg', '/images/modular-running-shoe-process-2.jpg', '/images/modular-running-shoe-process-3.jpg'],
-  specs: [{
-    label: 'Spec 1',
-    value: 'Value 1'
-  }, {
-    label: 'Spec 2',
-    value: 'Value 2'
-  }, {
-    label: 'Spec 3',
-    value: 'Value 3'
-  }, {
-    label: 'Spec 4',
-    value: 'Value 4'
-  }],
-  detailDescription: 'As a runner, I experienced firsthand how quickly training shoes wear out and how expensive frequent replacements can be. That observation motivated me to co-lead the design and prototyping of a modular running shoe with interchangeable soles, aimed at improving footwear longevity and affordability without sacrificing performance. The concept separated the shoe into a long-lasting upper and a replaceable sole, allowing runners to swap worn or terrain-specific soles instead of discarding an entire shoe. I focused on mechanical interface design, developing TPU-based locking mechanisms (channel and dovetail geometries) that balanced shear strength, flexibility, and ease of use under real running loads.\n\nWe iterated through CAD, tolerance testing, FEA, Instron shear and insertion tests, and user testing to validate the durability and usability of the locking system. While the final prototype demonstrated a viable mechanical solution, the project also surfaced challenges around user feedback, manufacturing complexity, and scalability.\n\nThis work directly influenced our approach to footwear commercialization. Although we initially explored bringing a modular shoe to market, the insights gained led us to pivot toward a simpler and more scalable solution: fully custom-fit, 3D-printed shoes—which is now NEXUS footwear.',
+  detailDescription: 'As a runner, I experienced firsthand how quickly training shoes wear out and how expensive frequent replacements can be. That observation motivated me to co-lead the design and prototyping of a modular running shoe with interchangeable soles, aimed at improving footwear longevity and affordability without sacrificing performance. The concept separated the shoe into a long-lasting upper and a replaceable sole, allowing runners to swap worn or terrain-specific soles instead of discarding an entire shoe. I focused on mechanical interface design, developing TPU-based locking mechanisms (channel and dovetail geometries) that balanced shear strength, flexibility, and ease of use under real running loads.\n\nWe iterated through CAD, tolerance testing, FEA, Instron shear and insertion tests, and user testing to validate the durability and usability of the locking system. While the final prototype demonstrated a viable mechanical solution, the project also raised questions about manufacturing complexity, and scalability.\n\nThis project was initially pursued in ENGS 021, introduction to engineering, but continued as we decided to attempt commercializing the product. This was the first iteration of what is now NEXUS Footwear Company. However, after consulting with manufacturers, exchanging design briefs, and speaking with more professionals in the industry, we pivoted toward a simpler and more scalable solution: fully custom-fit, 3D-printed shoes.',
   detailImages: [{
     imageUrl: '/images/projects/Modular Running Shoe/modular-ideation.png',
     aspectRatio: 'auto'
@@ -495,23 +351,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: 'Industrial Design',
   description: 'January - March 2025',
   imageUrl: '/images/projects/Desk Lamp/lamp-cover.webp',
-  overview: 'Redesigned turbine blade geometry for next-generation jet engines using computational fluid dynamics and additive manufacturing techniques. The new design achieves higher efficiency while reducing manufacturing complexity.',
-  challenge: 'Conventional turbine blades are limited by traditional manufacturing constraints, preventing optimal aerodynamic profiles that could significantly improve engine efficiency.',
-  solution: 'Utilized CFD simulations to optimize blade geometry without manufacturing constraints, then employed selective laser melting to produce complex internal cooling channels. Achieved 3.5% efficiency improvement.',
-  processImages: ['/images/modular-desk-lamp-process-1.jpg', '/images/modular-desk-lamp-process-2.jpg', '/images/modular-desk-lamp-process-3.jpg'],
-  specs: [{
-    label: 'Material',
-    value: 'Inconel 718'
-  }, {
-    label: 'Max Temp',
-    value: '1100°C'
-  }, {
-    label: 'Efficiency Gain',
-    value: '3.5%'
-  }, {
-    label: 'Manufacturing',
-    value: 'SLM'
-  }],
   detailDescription: 'I designed and fabricated a modular desk lamp as part of a digital arts and fabrication course, exploring the intersection of structural design, material behavior, and light diffusion. The initial inspiration for the form came from the microscopic cellular structure of wood, which informed the layered panel geometry.\n\nThe design process began with physical prototyping using cardstock, paper, and acrylic to explore material thickness, panel spacing, and layered construction for the lamp body. I then vector-traced the final pattern in Adobe Illustrator, creating files for laser cutting and providing a scalable foundation for further iteration and fabrication.\n\nI designed the joints, stand, and bulb holder in Fusion 360, focusing on friction-fit tolerances that allowed the entire lamp to be assembled without adhesives. The final lamp uses a two-layer system of laser-cut wood and laser-etched acrylic to control light emission and diffusion. I also experimented with gyroid lattice joints to reduce material usage and alter light behavior (I liked the solid joints better)\n\nThis project required a combination of mechanical design, tolerance and material understanding, digital fabrication, and some creativity to optimize the aesthetic design.',
   detailImages: [{
     imageUrl: '/images/projects/Desk Lamp/lamp-isometric-light.webp',
@@ -574,24 +413,7 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: ['Art', 'Industrial Design'],
   description: 'March - May 2024',
   imageUrl: '/images/projects/Design Sketching/engs11-cover.webp',
-  overview: 'Developed an advanced prosthetic knee joint with microprocessor-controlled damping that adapts to different walking speeds and terrain conditions, providing a more natural gait for amputees.',
-  challenge: 'Traditional prosthetic joints use fixed damping, resulting in unnatural movement patterns and increased energy expenditure for users across varying activities.',
-  solution: 'Implemented a magnetorheological damper controlled by an embedded microprocessor that analyzes gait phase in real-time and adjusts resistance accordingly. Reduced metabolic cost by 18% compared to passive prosthetics.',
-  processImages: ['/images/cad-sketch-gallery-process-1.jpg', '/images/cad-sketch-gallery-process-2.jpg', '/images/cad-sketch-gallery-process-3.jpg'],
-  specs: [{
-    label: 'Weight',
-    value: '1.2 kg'
-  }, {
-    label: 'Battery Life',
-    value: '48 hours'
-  }, {
-    label: 'Response Time',
-    value: '20 ms'
-  }, {
-    label: 'Max Load',
-    value: '120 kg'
-  }],
-  detailDescription: 'I\'ve sketched my whole life and have always used drawing as a way to understand how things work. I rely on sketching constantly in both my design and engineering work, whether I\'m breaking down a mechanical system, planning a graphic layout, or trying to reason through a complicated codebase. For me, sketching is less about making polished drawings and more about thinking clearly.\n\nI recently took a course called The Way Things Work (ENGS 011), taught by illustrator and author David Macaulay, best known for books like The Way Things Work, Cathedral, and Castle. His work focuses on explaining complex systems through clear, structured drawings, and that approach shaped how the course was taught.\n\nThroughout the class, we worked on improving visual communication skills like sequencing, annotation, and using drawings to explain function rather than appearance. The pages shown here are from my sketchbook during the course and reflect how I use sketching as an everyday tool for understanding, exploration, and design.',
+  detailDescription: 'I\'ve sketched my whole life and have always used drawing as a way to understand how things work. I rely on sketching constantly in both my design and engineering work, whether I\'m breaking down a mechanical system, planning a graphic layout, or trying to reason through a complicated codebase. For me, sketching is less about making polished drawings and more about thinking clearly.\n\nI recently took a course called The Way Things Work, ENGS 011, taught by illustrator and author David Macaulay, best known for books like The Way Things Work, Cathedral, and Castle. His work focuses on explaining complex systems through clear, structured drawings, and that approach shaped how the course was taught.\n\nThroughout the class, we worked on improving visual communication skills like sequencing, annotation, and using drawings to explain function rather than appearance. The pages shown here are from my sketchbook during the course and reflect how I use sketching as an everyday tool for understanding, exploration, and design.',
   detailImages: [{
     imageUrl: '/images/projects/Design Sketching/engs11-bike-kinematics.webp',
     aspectRatio: 'auto'
@@ -641,23 +463,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: 'Art',
   description: 'September - December 2024',
   imageUrl: '/images/projects/Drawing /eye-cover.jpeg',
-  overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
-  challenge: 'Describe the challenge or problem your project addresses.',
-  solution: 'Explain your solution and how it addresses the challenge.',
-  processImages: ['/images/project-8-process-1.jpg', '/images/project-8-process-2.jpg', '/images/project-8-process-3.jpg'],
-  specs: [{
-    label: 'Spec 1',
-    value: 'Value 1'
-  }, {
-    label: 'Spec 2',
-    value: 'Value 2'
-  }, {
-    label: 'Spec 3',
-    value: 'Value 3'
-  }, {
-    label: 'Spec 4',
-    value: 'Value 4'
-  }],
   detailDescription: 'Drawing is how I built my sense of three-dimensional form and learned to really slow down and observe what\'s in front of me. I\'ll always draw as a way to relax and capture a moment, but it\'s also something I\'ve studied through studio art courses at Dartmouth. I mostly work in graphite, charcoal, and ink, and I\'m drawn to mediums that reward patience and close looking. I\'m inspired by artists like David Macaulay for his clear, explanatory drawings, Giovanni Battista Piranesi for his dramatic architectural spaces, and Stephen Bauman for his sensitivity to form. These are some drawings I\'ve made over the years.',
   detailImages: [{
     imageUrl: '/images/projects/Drawing /drawing-spoon.webp',
@@ -711,23 +516,6 @@ export const ENGINEERING_PROJECTS: Project[] = [{
   category: 'Art',
   description: 'July - August 2025',
   imageUrl: '/images/projects/Sculpture /sculpture-cover.webp',
-  overview: 'Provide a detailed overview of your project here. This will appear on the project detail page.',
-  challenge: 'Describe the challenge or problem your project addresses.',
-  solution: 'Explain your solution and how it addresses the challenge.',
-  processImages: ['/images/project-9-process-1.jpg', '/images/project-9-process-2.jpg', '/images/project-9-process-3.jpg'],
-  specs: [{
-    label: 'Spec 1',
-    value: 'Value 1'
-  }, {
-    label: 'Spec 2',
-    value: 'Value 2'
-  }, {
-    label: 'Spec 3',
-    value: 'Value 3'
-  }, {
-    label: 'Spec 4',
-    value: 'Value 4'
-  }],
   detailDescription: 'I took a sculpture course at Dartmouth where a big focus was learning what actually adds to a piece and what takes away from it. That way of thinking has carried directly into my product design work, especially when deciding what details are necessary versus what\'s just noise. For my final project, I worked across multiple materials, combining woodworking, plaster casting, and fabric to explore form, texture, and balance. The final result is shown below.',
   detailImages: [{
     imageUrl: '/images/projects/Sculpture /sculpture-1.webp',

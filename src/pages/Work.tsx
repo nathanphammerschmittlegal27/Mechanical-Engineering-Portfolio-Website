@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { PageHeader } from '../components/PageHeader';
@@ -8,12 +8,15 @@ import { Footer } from '../components/Footer';
 import { ENGINEERING_PROJECTS, CATEGORIES } from '../data/projects';
 export function Work() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const filteredProjects = activeCategory === 'All' 
-    ? ENGINEERING_PROJECTS 
-    : ENGINEERING_PROJECTS.filter(project => {
-        const categories = Array.isArray(project.category) ? project.category : [project.category];
-        return categories.includes(activeCategory);
-      });
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === 'All') {
+      return ENGINEERING_PROJECTS;
+    }
+    return ENGINEERING_PROJECTS.filter(project => {
+      const categories = Array.isArray(project.category) ? project.category : [project.category];
+      return categories.includes(activeCategory);
+    });
+  }, [activeCategory]);
   return <div className="min-h-screen bg-white font-sans antialiased selection:bg-blue-100 selection:text-blue-900">
       <Navbar />
 

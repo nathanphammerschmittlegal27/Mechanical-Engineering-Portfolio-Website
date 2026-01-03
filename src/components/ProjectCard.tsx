@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -11,9 +12,12 @@ export interface Project {
 interface ProjectCardProps {
   project: Project;
 }
-export function ProjectCard({
+export const ProjectCard = memo(function ProjectCard({
   project
 }: ProjectCardProps) {
+  const categoryText = useMemo(() => {
+    return Array.isArray(project.category) ? project.category.join(' • ') : project.category;
+  }, [project.category]);
   return <Link to={`/project/${project.id}`}>
       <motion.div layout initial={{
       opacity: 0,
@@ -28,13 +32,18 @@ export function ProjectCard({
       duration: 0.3
     }} className="group relative bg-gray-50 rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
         <div className="aspect-[4/3.2] overflow-hidden bg-gray-100">
-          <img src={project.imageUrl} alt={project.title} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${project.title === 'Design Sketching' ? 'object-left' : ''}`} />
+          <img 
+            src={project.imageUrl} 
+            alt={project.title} 
+            loading="lazy"
+            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${project.title === 'Design Sketching' ? 'object-left' : ''}`} 
+          />
         </div>
 
         <div className="p-4 sm:p-5 md:p-7">
           <div className="flex items-center justify-between mb-2 sm:mb-3">
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-blue-600">
-              {Array.isArray(project.category) ? project.category.join(' • ') : project.category}
+              {categoryText}
             </span>
             <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
           </div>
@@ -44,4 +53,4 @@ export function ProjectCard({
         </div>
       </motion.div>
     </Link>;
-}
+});

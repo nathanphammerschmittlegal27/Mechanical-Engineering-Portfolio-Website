@@ -400,6 +400,7 @@ export function ImageStack({
                         }}
                         src={image.src || image.imageUrl || ''}
                         alt={image.alt || ''}
+                        loading="lazy"
                         className="rounded-2xl shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]"
                         style={hasFixedHeight ? {
                           height: `${scaledHeight || targetHeight}px`,
@@ -618,6 +619,7 @@ export function ImageStack({
                         }}
                         src={image.src || image.imageUrl || ''}
                         alt={image.alt || ''}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                       />
                     </div>

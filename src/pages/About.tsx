@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Linkedin } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { PageHeader } from '../components/PageHeader';
 import { Footer } from '../components/Footer';
@@ -45,6 +46,17 @@ export function About() {
               <p className="text-lg text-gray-600 leading-relaxed">
                 I'm actively seeking roles in <strong>mechanical engineering, product design, robotics, and manufacturing</strong>.
               </p>
+              <div className="flex justify-start pt-2">
+                <a 
+                  href="https://www.linkedin.com/in/nathan-hammerschmitt-le-gal" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-600 hover:text-[#007AFF] transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={24} />
+                </a>
+              </div>
             </motion.div>
           </div>
         </section>

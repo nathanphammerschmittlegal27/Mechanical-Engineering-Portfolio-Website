@@ -25,13 +25,11 @@ Open `src/data/projects.ts` and update the image URLs:
 **Before (using external URLs):**
 ```typescript
 imageUrl: 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=80&w=2500',
-processImages: ['https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=2500', ...]
 ```
 
 **After (using local images):**
 ```typescript
 imageUrl: '/images/autonomous-drone-frame.jpg',
-processImages: ['/images/autonomous-drone-frame-process-1.jpg', '/images/autonomous-drone-frame-process-2.jpg', '/images/autonomous-drone-frame-process-3.jpg']
 ```
 
 ## Example: Updating a Project
@@ -45,15 +43,14 @@ Here's a complete example for the first project:
   category: 'Robotics',
   description: 'Lightweight carbon fiber airframe optimized for endurance and payload stability using generative design.',
   imageUrl: '/images/autonomous-drone-frame.jpg',  // ← Changed from external URL
-  overview: '...',
-  challenge: '...',
-  solution: '...',
-  processImages: [
-    '/images/autonomous-drone-frame-process-1.jpg',  // ← Changed from external URLs
-    '/images/autonomous-drone-frame-process-2.jpg',
-    '/images/autonomous-drone-frame-process-3.jpg'
-  ],
-  specs: [...]
+  detailDescription: '...',
+  detailImages: [
+    {
+      imageUrl: '/images/project-image-1.webp',
+      aspectRatio: 'auto',
+      size: 'full'
+    }
+  ]
 }
 ```
 
@@ -63,14 +60,14 @@ Here's a complete example for the first project:
 2. **File Names**: Use lowercase with hyphens (e.g., `my-project-image.jpg`)
 3. **Image Sizes**: 
    - Main images: 1200x800px or larger
-   - Process images: 800x600px or larger
+   - Detail images: 800x600px or larger
 4. **File Formats**: JPG for photos, PNG for graphics, WebP for best compression
 
 ## Where Images Are Used
 
 Images are referenced in two places:
-1. **Main project image** (`imageUrl`) - shown on project cards and detail pages
-2. **Process images** (`processImages`) - shown in the "Design Process" section of project detail pages
+1. **Main project image** (`imageUrl`) - shown on project cards
+2. **Detail images** (`detailImages`) - shown on project detail pages
 
 Both are defined in `src/data/projects.ts` in the `ENGINEERING_PROJECTS` array.
 

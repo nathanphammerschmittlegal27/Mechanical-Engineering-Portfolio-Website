@@ -1,10 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { ENGINEERING_PROJECTS } from '../data/projects';
 import { ImageStack } from '../components/ImageStack';
+import { parseDescriptionWithLinks } from '../utils/textParsing';
 export function ProjectDetail() {
   const {
     id
@@ -55,26 +57,13 @@ export function ProjectDetail() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <div className="text-lg text-gray-600 leading-relaxed max-w-4xl">
-                  {project.detailDescription.split(/\n\n/).map((paragraph, pIndex) => (
-                    <p key={pIndex} className={pIndex > 0 ? 'mt-4' : ''}>
-                      {paragraph.split(/(nexusfootwear\.com)/).map((part, index) => {
-                        if (part === 'nexusfootwear.com') {
-                          return (
-                            <a
-                              key={index}
-                              href="https://nexusfootwear.com"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="font-semibold text-gray-800 hover:text-gray-900"
-                            >
-                              {part}
-                            </a>
-                          );
-                        }
-                        return part;
-                      })}
-                    </p>
-                  ))}
+                  {useMemo(() => 
+                    project.detailDescription!.split(/\n\n/).map((paragraph, pIndex) => (
+                      <p key={pIndex} className={pIndex > 0 ? 'mt-4' : ''}>
+                        {parseDescriptionWithLinks(paragraph)}
+                      </p>
+                    )), [project.detailDescription]
+                  )}
                 </div>
               </motion.div>
             )}
@@ -102,7 +91,7 @@ export function ProjectDetail() {
                           gap={32}
                           rowGap={32}
                           maxRowHeight={450}
-                          captions={['Final SolidWorks assembly drawing', 'Final SolidWorks assembly drawing']}
+                          captions={['Final SolidWorks assembly drawings']}
                         />
                       </div>
                     )}
@@ -349,6 +338,7 @@ export function ProjectDetail() {
                           gap={32}
                           rowGap={32}
                           maxRowHeight={400}
+                          captions={['Matching angular velocity with dynamic time warping']}
                         />
                       </div>
                     )}
@@ -630,7 +620,7 @@ export function ProjectDetail() {
                                 gap={32}
                                 rowGap={32}
                                 maxRowHeight={550}
-                                captions={['Instron compression testing set-up']}
+                                captions={['Instron compression testing']}
                               />
                             </div>
                             
@@ -645,7 +635,7 @@ export function ProjectDetail() {
                                 gap={32}
                                 rowGap={32}
                                 maxRowHeight={550}
-                                captions={['Initial SolidWorks Assembly (V1)', 'V1 Stress and Deflection FEA']}
+                                captions={['Initial SolidWorks Assembly (V1)', 'Stress and Deflection FEA (V1)']}
                               />
                             </div>
                             
@@ -660,7 +650,7 @@ export function ProjectDetail() {
                                 gap={32}
                                 rowGap={32}
                                 maxRowHeight={550}
-                                captions={['Final solidworks assembly (V2), added truss frame, pin and roller supports']}
+                                captions={['Final solidworks assembly, added truss frame, pin and roller supports (V2)']}
                               />
                             </div>
                             
@@ -672,7 +662,7 @@ export function ProjectDetail() {
                                 gap={32}
                                 rowGap={32}
                                 maxRowHeight={550}
-                                captions={['Final V2 FEA', 'Predicted point of failure from stress concentration']}
+                                captions={['Final FEA (V2)', 'Predicted point of failure from stress concentration']}
                               />
                             </div>
                             
@@ -1164,7 +1154,7 @@ export function ProjectDetail() {
                             gap={32}
                             rowGap={32}
                             maxRowHeight={400}
-                            captions={['Spur gears', 'Cannondale road bike spacer']}
+                            captions={['Spur gears', 'Cannondale road bike stem spacer']}
                           />
                         </div>
                         
@@ -1202,8 +1192,8 @@ export function ProjectDetail() {
                             gap={32}
                             rowGap={32}
                             maxRowHeight={650}
+                            captions={['VPDMS droplet maker in action!']}
                           />
-                          <p className="text-lg text-gray-600 leading-relaxed mt-2">VPDMS droplet maker in action!</p>
                         </div>
                         
                         {/* Poster row */}
@@ -1227,22 +1217,13 @@ export function ProjectDetail() {
                               gap={32}
                               rowGap={32}
                               maxRowHeight={650}
+                              captions={[
+                                'Sodium alginate particles',
+                                'VPDMS emulsified particles',
+                                'VPDMS emulsified with fluorescent dye',
+                                'Rheometer used to test modulus of alginate particles'
+                              ]}
                             />
-                            {/* Captions for remaining images - will align based on natural wrapping */}
-                            <div className="mt-4 space-y-2">
-                              {remainingImages[2]?.imageUrl?.includes('alginate-overhead') && (
-                                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl">Sodium alginate particles</p>
-                              )}
-                              {remainingImages[3]?.imageUrl?.includes('vpdms-normal') && (
-                                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl">VPDMS particles from emulsification procedure</p>
-                              )}
-                              {remainingImages[4]?.imageUrl?.includes('vpdms-fluorescent') && (
-                                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl">VPDMS emulsified with fluorescent dye</p>
-                              )}
-                              {remainingImages[5]?.imageUrl?.includes('rheometer') && (
-                                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl">Rheometer used to test modulus of alginate particles</p>
-                              )}
-              </div>
             </div>
                         )}
                       </>
