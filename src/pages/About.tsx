@@ -272,10 +272,10 @@ export function About() {
             </h2>
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6">
               <div className="aspect-[8.5/11] bg-gray-50 rounded-lg overflow-hidden mb-6 shadow-[0_20px_30px_-8px_rgba(0,0,0,0.19)]">
-                <img src="/images/about/resume-preview.png" alt="Resume Preview" className="w-full h-full object-contain" />
+                <img src="/images/about/resume-screenshot.png" alt="Resume Preview" className="w-full h-full object-contain" />
               </div>
               <div className="text-center">
-                <a href="/NathanHLG_Resume.pdf" download="NathanHLG_Resume.pdf" className="inline-block bg-gray-900 text-white font-medium px-8 py-3 rounded-xl hover:bg-black transition-colors">
+                <a href="/NathanHLG-Resume.pdf" download="NathanHLG-Resume.pdf" className="inline-block bg-gray-900 text-white font-medium px-8 py-3 rounded-xl hover:bg-black transition-colors">
                   Download
                 </a>
               </div>
